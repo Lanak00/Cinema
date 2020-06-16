@@ -17,6 +17,20 @@ public class UserController {
 	private static ArrayList<Cinema> cinemas = new ArrayList<Cinema>();
 	public static User loggedUser = null;
 	
+	public UserController() {
+		User admin = new User();
+		admin.setFirstName("Marko");
+		admin.setLastName("Markovic");
+		admin.setUsername("admiin");
+		admin.setPassword("password123");
+		admin.setEmail("marko@gmail.com");
+		admin.setRole("ADMINISTRATOR");
+		admin.setBirthDate("11.8.1995.");
+		admin.setId((long)3);
+		admin.setPhone("066589753");
+		users.add(admin);
+	}
+	
 	@GetMapping("/")
 	public String welcome() {
 		return "index.html";
@@ -30,6 +44,7 @@ public class UserController {
 		
 	@PostMapping("/save-user") 
     public String saveUser(@ModelAttribute("user") User user) {
+		user.setRole("KORISNIK");
 		users.add(user);
     	return "login.html";
     }
@@ -48,7 +63,6 @@ public class UserController {
 			if(users.get(i).getUsername().equals(user.getUsername())
 			   && users.get(i).getPassword().equals(user.getPassword())) {
 				loggedUser = users.get(i);
-				loggedUser.setRole("KORISNIK");
 				break;
 			}
 		}
