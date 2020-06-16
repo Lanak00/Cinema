@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
-import org.springframework.context.support.BeanDefinitionDsl.Role;
+//import org.springframework.context.support.BeanDefinitionDsl.Role;
 //enum Role{ADMINISTRATOR, MENADZER, KORISNIK}
 @Entity
 public class User implements Serializable{
@@ -38,7 +38,7 @@ public class User implements Serializable{
 	private String birthDate;
 	
 	@Column
-	private Role role;
+	private String role;
 	
 	@Column
 	private Boolean isActive;
@@ -133,11 +133,11 @@ public class User implements Serializable{
 		this.birthDate = birthDate;
 	}
 
-	public Role getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(Role role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 

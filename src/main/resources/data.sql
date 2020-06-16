@@ -1,9 +1,9 @@
 
 INSERT INTO USER (BIRTH_DATE, EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, PHONE, ROLE, USERNAME) 
-VALUES ('25.01.2000', 'kl@gmail.com', 'Lana', 'Kovacevic', 'veb021', '0604706707', '3', 'lanak');
+VALUES ('25.01.2000', 'kl@gmail.com', 'Lana', 'Kovacevic', 'veb021', '0604706707', 'KORISNIK', 'lanak');
 
 INSERT INTO USER (BIRTH_DATE, EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, PHONE, ROLE, USERNAME) 
-VALUES ('10.09.1996', 'sp@gmail.com', 'Stefan', 'Panzalovic', 'lana22', '060123456', '3', 'panzal');
+VALUES ('10.09.1996', 'sp@gmail.com', 'Stefan', 'Panzalovic', 'lana22', '060123456', 'KORISNIK', 'panzal');
 
 INSERT INTO CINEMA (ADRESS, E_MAIL, MANAGER, NAME, PHONE_NUMBER) 
 VALUES ('Jugoslovenske Armije 6', 'bioskop@gmail.com', 'Olja', 'Bioskop', '0604706707');
