@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
+import org.springframework.context.support.BeanDefinitionDsl.Role;
+//enum Role{ADMINISTRATOR, MENADZER, KORISNIK}
 @Entity
 public class User implements Serializable{
 
@@ -36,7 +38,10 @@ public class User implements Serializable{
 	private String birthDate;
 	
 	@Column
-	private String role;
+	private Role role;
+	
+	@Column
+	private Boolean isActive;
 
 	@ManyToMany 
 	@JoinTable  (name = "movies_watched",
@@ -53,6 +58,9 @@ public class User implements Serializable{
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<MovieRating> ratings = new HashSet<MovieRating>();
 
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -88,7 +96,15 @@ public class User implements Serializable{
 	public String getLastName() {
 		return lastName;
 	}
+	
+	public Boolean getIsActive() {
+		return isActive;
+	}
 
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
+	
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
@@ -117,11 +133,11 @@ public class User implements Serializable{
 		this.birthDate = birthDate;
 	}
 
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 
@@ -148,7 +164,7 @@ public class User implements Serializable{
 	public void setRatings(Set<MovieRating> ratings) {
 		this.ratings = ratings;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "User [id=" + id + 

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+	<html lang="en" xmlns:th="http://www.thymeleaf.org">
+ 		<head>
+ 			<meta charset = "UTF-8">
+ 			<title> Successful Registration </title>
+ 		</head>
+ 		
+ 		<body>
+			<h1> Moj Profil </h1>
+			<span>Ime:</span> <span th:text = "${user.firstName}"> </span> </br>
+			<span>Prezime:</span> <span th:text = "${user.lastName}"> </span> </br>
+			<span>Korisnicko ime:</span> <span th:text = "${user.username}"> </span> </br>
+			<span>Email:</span> <span th:text = "${user.email}"> </span> </br>
+			<span>Telefon:</span> <span th:text = "${user.phone}"> </span> </br>
+			<span>Datum rodjenja:</span> <span th:text = "${user.birthDate}"> </span> </br>
+			</br>	
+			<a href="/logout">Odloguj se</a>
+		</body>
+ </html>

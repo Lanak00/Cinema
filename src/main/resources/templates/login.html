@@ -1,0 +1,19 @@
+<!DOCTYPE html>  
+<html xmlns:th="http://www.thymeleaf.org">  
+<head>  
+    <title>Login page</title>   
+</head>  
+<body>  
+<div id="container">  
+    <h2>Uloguj se</h2>  
+    	<form th:action="@{/login-check}" th:object="${user}" method="post">
+		<label for="username">Korisnicko ime</label> 
+		<input type="text" th:field="*{username}"/> </br>
+		<label>Lozinka<label>
+		<input type="text" th:field="*{password}"/> </br>
+		<button type="submit">Uloguj se</button>
+    <p>Nemate nalog? 
+  	<a href="/registration">registruj se</a> </p>
+</div>  
+</body>  
+</html>
