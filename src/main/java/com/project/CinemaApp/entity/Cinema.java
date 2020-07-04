@@ -33,9 +33,26 @@ public class Cinema implements Serializable{
 	@OneToMany(mappedBy="cinema", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<CinemaHall> halls = new HashSet<>();
 	
-	@OneToMany(mappedBy="cinema", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Screening> screeningSchedule = new HashSet<>();
+	@ManyToMany (mappedBy = "managedCinemas")
+	private Set<User> managers = new HashSet<>();
 
+	
+	public Set<User> getManagers() {
+		return managers;
+	}
+
+	public void setManagers(Set<User> managers) {
+		this.managers = managers;
+	}
+	
+	public void addManager(User manager) {
+		managers.add(manager);
+	}
+	
+	public void removeManager(User manager) {
+		managers.remove(manager);
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -82,6 +99,14 @@ public class Cinema implements Serializable{
 
 	public void setManager(String manager) {
 		this.manager = manager;
+	}
+
+	public Set<CinemaHall> getHalls() {
+		return halls;
+	}
+
+	public void setHalls(Set<CinemaHall> halls) {
+		this.halls = halls;
 	}
 
 	@Override

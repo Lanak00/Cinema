@@ -4,12 +4,12 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-public class MovieRating implements Serializable {
+public class WatchedMovies implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	MovieRatingKey id;
+	WatchedMoviesKey id;
 	
 	@ManyToOne
     @MapsId("user_id")
@@ -24,11 +24,11 @@ public class MovieRating implements Serializable {
     @Column
     private int rating;
 
-	public MovieRatingKey getId() {
+	public WatchedMoviesKey getId() {
 		return id;
 	}
 
-	public void setId(MovieRatingKey id) {
+	public void setId(WatchedMoviesKey id) {
 		this.id = id;
 	}
 

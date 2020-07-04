@@ -1,13 +1,68 @@
-<!DOCTYPE html>
-	<html lang="en" xmlns:th="http://www.thymeleaf.org">
- 		<head>
- 			<meta charset = "UTF-8">
- 			<title> Administrator page </title>
- 		</head>
- 
- 		<body>
- 			<button onclick="location.href = '/cinema-form'">Dodaj bioskop</button>
- 			<button onclick="location.href = '/cinemas'">Vidi bioskope</button>
- 		</body>
- 	</html>
- 	
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+	     <script src="/js/jquery.min.js"></script>
+    	 <script type="text/javascript" src="/js/cinema.js"></script>
+  		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     	 
+	    <title>Home Page</title>
+	    <meta charset="utf-8"/>
+	</head>
+	<body>
+		<div id="cinemaStuff">
+				<button id="addButton">Dodaj bioskop</button>
+		        <table id="cinemas">
+		       		
+		        </table>
+	    	
+	    		<button onclick="location.href = 'managers.html'">Menadzeri</button>
+    	</div>
+    	
+    	<div class="formModify" hidden>
+			<h1>Dodaj bioskop<h1>
+			<form id="cinemaFormModify">
+				<input type="text" id="id" hidden/>
+				<label for="name">Naziv</label> 
+				<input type="text" id="name"/>
+				<label for="address">Adresa<label>
+				<input type="text" id="address"/> 
+				<label for="mobilePhone">Telefon<label>
+				<input type="text" id="mobilePhone" />
+				<label for="email">Email<label>
+				<input type="text" id="email"/> 
+				<button type="submit">Izmeni bioskop</button>
+			</form>
+  	    </div>
+  	    
+  	    <div class="formAdd" hidden>
+			<h1>Dodaj bioskop<h1>
+			<form id="cinemaFormAdd">
+				<label for="name">Naziv</label> 
+				<input type="text" id="name"/>
+				<label for="address">Adresa<label>
+				<input type="text" id="address"/> 
+				<label for="mobilePhone">Telefon<label>
+				<input type="text" id="mobilePhone" />
+				<label for="email">Email<label>
+				<input type="text" id="email"/>
+				<button type="submit">Dodaj bioskop</button>
+			</form>
+  	    </div>
+  	    
+  	    <div id="cinemaManagersStuff" hidden>
+  	    	<table id="cinemaManagers">
+  	    	</table>
+  	    	
+  	    	<form>
+  	    		<select id="otherManagers">
+  	    		</select>
+  	    		
+  	    		<button>Add manager</button> 
+  	    	</form>
+  	    	
+  	    	<button id="goToCinemas">Bioskopi</button>
+  	    </div>
+	</body>
+	 	

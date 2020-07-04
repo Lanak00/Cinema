@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
-
 @Entity
 public class Movie implements Serializable {
 
@@ -28,20 +27,14 @@ public class Movie implements Serializable {
 	private String duration;
 	  
 	@Column 
-	private Double averageRating;
-
-	@ManyToMany (mappedBy = "watchedMovies" )
-	private Set<User> watched = new HashSet<>();
-	
-	@ManyToMany (mappedBy = "reservedTickets")
-	private Set<User> reserved = new HashSet<>();
+	private String averageRating;
 	
 	@OneToMany (mappedBy = "movie", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<MovieRating> ratings = new HashSet<MovieRating>() ;
+	private Set<WatchedMovies> usersWatched = new HashSet<WatchedMovies>() ;
 	
 	@OneToMany (mappedBy = "movie")
-	private Set<Screening> screenings = new HashSet<Screening>();
-	
+	private Set<Projection> projections = new HashSet<Projection>();
+
 	public Long getId() {
 		return id;
 	}
@@ -82,48 +75,42 @@ public class Movie implements Serializable {
 		this.duration = duration;
 	}
 
-	public Double getAverageRating() {
+	public String getAverageRating() {
 		return averageRating;
 	}
 
-	public void setAverageRating(Double averageRating) {
+	public void setAverageRating(String averageRating) {
 		this.averageRating = averageRating;
 	}
 
-	public Set<User> getWatched() {
-		return watched;
+	public Set<WatchedMovies> getUsersWatched() {
+		return usersWatched;
 	}
 
-	public void setWatched(Set<User> watched) {
-		this.watched = watched;
+	public void setUsersWatched(Set<WatchedMovies> usersWatched) {
+		this.usersWatched = usersWatched;
 	}
 
-	public Set<User> getReserved() {
-		return reserved;
+	public Set<Projection> getProjections() {
+		return projections;
 	}
 
-	public void setReserved(Set<User> reserved) {
-		this.reserved = reserved;
-	}
-
-	public Set<MovieRating> getRatings() {
-		return ratings;
-	}
-
-	public void setRatings(Set<MovieRating> ratings) {
-		this.ratings = ratings;
+	public void setProjections(Set<Projection> projections) {
+		this.projections = projections;
 	}
 
 	@Override
 	public String toString() {
-		return "Movie [id=" + id + 
-			   ", title=" + title + 
-			   ", description=" + description + 
-			   ", genre=" + genre + 
-			   ", duration=" + duration + 
-			   ", averageRating=" + averageRating + "]";
+		return "Movie [id=" + id + ", title=" + title + ", description=" + description + ", genre=" + genre
+				+ ", duration=" + duration + ", averageRating=" + averageRating + ", usersWatched=" + usersWatched
+				+ ", projections=" + projections + "]";
 	}
+
 	
+	
+
+
+
 	
 	
 	

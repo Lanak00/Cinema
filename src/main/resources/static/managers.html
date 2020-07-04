@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+	     <script src="/js/jquery.min.js"></script>
+    	 <script type="text/javascript" src="/js/manager.js"></script>
+  		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     	 
+	     <title>Home Page</title>
+	     <meta charset="utf-8"/>
+	</head>
+	<body>
+		<div id="managersStuff">
+			<button id="addButton">Registruj menadzera</button>
+	        <table id="managers">
+	       	
+	        </table>
+    	</div>
+    	
+  	    <div class="formAdd" hidden>
+			<h1>Dodaj bioskop<h1>
+			<form id="registerForm">
+				<div class="form-field">
+					<label for="firstName">Ime</label> 
+					<input type="text" id="firstName"/>
+				</div>
+				<div class="form-field">
+					<label for="lastName">Prezime<label>
+					<input type="text" id="lastName"/> 
+				</div>
+				<div class="form-field">
+					<label for="username">Korisnicko ime<label>
+					<input type="text" id="username" /> 
+				</div>
+				<div class="form-field">
+					<label for="password">Lozinka<label>
+					<input type="password" id="password" />
+				</div>
+				<div class="form-field">
+					<label for="email">Email<label>
+					<input type="email" id="email" />
+				</div>
+				<div class="form-field">
+					<label for="phone">Telefon<label>
+					<input type="number" id="phone" /> 
+				</div>
+				<div class="form-field">
+					<label for="birthYear">Godina rodjenja<label>
+					<input type="number" id="birthYear"/> 
+				</div>
+				<div class="form-field">
+					<label for="birthMonth">Mesec rodjenja<label>
+					<input type="number" id="birthMonth"/> 
+				</div>
+				<div class="form-field">
+					<label for="birthDay">Dan rodjenja<label>
+					<input type="number" id="birthDay"/> 
+				</div>
+				<div class="form-field">
+					<button type="submit" class="btn">Registruj menagera</button>
+				</div>
+			</form>
+  	    </div>		
+	</body>
+	 	

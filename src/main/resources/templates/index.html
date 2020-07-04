@@ -1,11 +1,10 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
-		 <!-- Compiled and minified CSS -->
+	     <script src="/js/jquery.min.js"></script>
+    	 <script type="text/javascript" src="/js/movie.js"></script>
   		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    	 <!-- Compiled and minified JavaScript -->
    		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-   		 <!--Import Google Icon Font-->
      	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      	 
 	    <title>Home Page</title>
@@ -22,9 +21,57 @@
 				</ul>
 			</div>
 		</nav>
-		<scpript src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-		<!-- Compiled and minified CSS -->
-  		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+		<div class="container">
+	        <table id="movies">
+	            
+	        </table>
+    	</div>
+    	<div>
+			<form id="searchForm">
+			     <label for="naziv">Naziv</label>
+				 <input type="text" id="naziv">
+				 <label for="zanr">Zanr</label>
+				 <div class="input-field col s12">
+					 <select id="zanr">
+					      <option value="">None</option>
+						  <option value="Action">Action</option>
+						  <option value="Thriller">Thriller</option>
+						  <option value="Comedy">Comedy</option>
+						  <option value="Documentary">Documentary</option>
+						  <option value="SciFi">Sci-Fi</option>
+						  <option value="Historical">Historical</option>
+				     </select>
+			     </div>
+				 <label for="opis">Opis</label>
+				 <input type="text" id="opis">
+				 <label for="ocenaMin">Ocena min</label>
+			     <input type="number" id="ocenaMin">
+			     <label for="ocenaMax">Ocena max</label>
+			     <input type="number" id="ocenaMax">
+			     <label for="cenaMin">Cena min</label>
+			     <input type="number" id="cenaMin">
+			     <label for="cenaMax">Cena max</label>
+			     <input type="number" id="cenaMax">
+			     <label for="datum">Datum:</label>
+				 <input type="date" id="datum" min="2020-29-06" max="2020-12-08">
+				 <label for="termin">Termin</label>
+				 <input type="time" id="termin" min="11:00" max="22:00">
+		         <input type="submit" value="Pretrazi">
+			</form> 
+			
+			
+			<div>				
+				 <label for="sort">Sortiraj po </label>
+				 <div class="input-field col s12">
+					 <select id="sort">	  
+						  <option value="title">Naziv</option>
+						  <option value="genre">Zanr</option>
+						  <option value="averageRating">Ocena</option>
+						  <option value="duration">Trajanje</option>
+				     </select>
+			     </div>
+			</div>
+    	</div>
 	</body>
 	
 	

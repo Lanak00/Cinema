@@ -42,25 +42,22 @@ public class User implements Serializable{
 	
 	@Column
 	private Boolean isActive;
-
-	@ManyToMany 
-	@JoinTable  (name = "movies_watched",
-				joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-				inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"))
-	private Set<Movie> watchedMovies = new HashSet<>();
 	
 	@ManyToMany
-	@JoinTable  (name = "tickets_reserved",
+	@JoinTable  (name = "reserved_tickets",
     			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-    			inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"))
-	private Set<Movie> reservedTickets = new HashSet<>();
+    			inverseJoinColumns = @JoinColumn(name = "projection_id", referencedColumnName = "id"))
+	private Set<Projection> projectionsReserved = new HashSet<>();
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<MovieRating> ratings = new HashSet<MovieRating>();
+    private Set<WatchedMovies> watchedMovies = new HashSet<WatchedMovies>();
+	
+	@ManyToMany
+	@JoinTable  (name = "manager_cinema",
+    			joinColumns = @JoinColumn(name = "manager_id", referencedColumnName = "id"),
+    			inverseJoinColumns = @JoinColumn(name = "cinema_id", referencedColumnName = "id"))
+	private Set<Cinema> managedCinemas = new HashSet<>();
 
-	
-	
-	
 	public Long getId() {
 		return id;
 	}
@@ -96,15 +93,7 @@ public class User implements Serializable{
 	public String getLastName() {
 		return lastName;
 	}
-	
-	public Boolean getIsActive() {
-		return isActive;
-	}
 
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
-	}
-	
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
@@ -136,35 +125,35 @@ public class User implements Serializable{
 	public String getRole() {
 		return role;
 	}
-
+	
 	public void setRole(String role) {
 		this.role = role;
 	}
 
-	public Set<Movie> getWatchedMovies() {
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	public Set<Projection> getProjectionsReserved() {
+		return projectionsReserved;
+	}
+
+	public void setProjectionsReserved(Set<Projection> projectionsReserved) {
+		this.projectionsReserved = projectionsReserved;
+	}
+
+	public Set<WatchedMovies> getWatchedMovies() {
 		return watchedMovies;
 	}
 
-	public void setWatchedMovies(Set<Movie> watchedMovies) {
+	public void setWatchedMovies(Set<WatchedMovies> watchedMovies) {
 		this.watchedMovies = watchedMovies;
 	}
 
-	public Set<Movie> getReservedTickets() {
-		return reservedTickets;
-	}
-
-	public void setReservedTickets(Set<Movie> reservedTickets) {
-		this.reservedTickets = reservedTickets;
-	}
-
-	public Set<MovieRating> getRatings() {
-		return ratings;
-	}
-
-	public void setRatings(Set<MovieRating> ratings) {
-		this.ratings = ratings;
-	}
-	
 	@Override
 	public String toString() {
 		return "User [id=" + id + 

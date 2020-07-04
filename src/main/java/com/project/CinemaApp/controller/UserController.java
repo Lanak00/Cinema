@@ -1,23 +1,25 @@
 package com.project.CinemaApp.controller;
 
-import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import com.project.CinemaApp.entity.Cinema;
 import com.project.CinemaApp.entity.User;
+import com.project.CinemaApp.service.UserService;
 
 
 @Controller
 public class UserController {
 	
-	private static ArrayList<User> users = new ArrayList<User>();
-	private static ArrayList<Cinema> cinemas = new ArrayList<Cinema>();
+	@Autowired
+    private UserService userService;
+	/*private static ArrayList<User> users = new ArrayList<User>();
+	private static ArrayList<Cinema> cinemas = new ArrayList<Cinema>();*/
 	public static User loggedUser = null;
 	
-	public UserController() {
+	/*public UserController() {
 		User admin = new User();
 		admin.setFirstName("Marko");
 		admin.setLastName("Markovic");
@@ -28,8 +30,8 @@ public class UserController {
 		admin.setBirthDate("11.8.1995.");
 		admin.setId((long)3);
 		admin.setPhone("066589753");
-		users.add(admin);
-	}
+		this.userService.save(admin);
+	}*/
 	
 	@GetMapping("/")
 	public String welcome() {
@@ -45,7 +47,7 @@ public class UserController {
 	@PostMapping("/save-user") 
     public String saveUser(@ModelAttribute("user") User user) {
 		user.setRole("KORISNIK");
-		users.add(user);
+		this.userService.save(user);
     	return "login.html";
     }
 	
@@ -58,28 +60,22 @@ public class UserController {
 	@PostMapping("/login-check")
     public String loginCheck(@ModelAttribute("user") User user) {
 
-        loggedUser = null;
-        for (int i = 0; i < users.size(); i++) {
-			if(users.get(i).getUsername().equals(user.getUsername())
-			   && users.get(i).getPassword().equals(user.getPassword())) {
-				loggedUser = users.get(i);
-				break;
-			}
-		}
+        loggedUser = this.userService.findUser(user.getUsername(), user.getPassword());
         if(loggedUser == null){
         	return "login.html";
-        }  
-        if(loggedUser.getRole().equals("ADMINISTRATOR") ) {
+        } 
+        loggedUser.setIsActive(true);
+        if(loggedUser.getRole().equals("ADMINISTRATOR")) {
         	return "administrator.html";
         } else {
-        return "start-page.html";
+        	return "start-page.html";
         }
     }
 	
 	@GetMapping("/my-profile")
     public String viewProfile (Model model) {
         model.addAttribute("user", loggedUser);
-        return "my-profile";
+        return "my-profile.html";
     }
 	
 	@GetMapping("/logout")
@@ -87,23 +83,5 @@ public class UserController {
 		loggedUser=null;
         return "index.html";
     }
-	
-	@GetMapping("/cinema-form")
-    public String cinemaForm(Model model) {
-        model.addAttribute("cinema", new Cinema());
-        return "cinema-form.html";
-    }
-	
-	@PostMapping("/add-cinema") 
-    public String addCinema(@ModelAttribute("cinema") Cinema cinema) {
-		cinemas.add(cinema);
-    	return "administrator.html";
-    }
-	
-	 @GetMapping("/cinemas")
-	 public String getCinemas(Model model) {
-	    model.addAttribute("cinemas", cinemas);
-	    return "cinemas.html";
-	}
 	
 }

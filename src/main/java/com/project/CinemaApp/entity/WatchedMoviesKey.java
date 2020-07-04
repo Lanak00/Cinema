@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Embeddable
-public class MovieRatingKey implements Serializable{
+public class WatchedMoviesKey implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -18,10 +18,10 @@ public class MovieRatingKey implements Serializable{
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == this) return true;
-        if (!(obj instanceof MovieRatingKey)) {
+        if (!(obj instanceof WatchedMoviesKey)) {
             return false;
         }
-        MovieRatingKey key = (MovieRatingKey) obj;
+        WatchedMoviesKey key = (WatchedMoviesKey) obj;
         return userId == key.userId &&
                movieId == key.movieId;
 	}
