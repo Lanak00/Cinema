@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.CinemaApp.entity.Cinema;
+import com.project.CinemaApp.entity.CinemaHall;
 import com.project.CinemaApp.entity.User;
 import com.project.CinemaApp.entity.dto.CinemaDTO;
+import com.project.CinemaApp.entity.dto.CinemaHallDTO;
 import com.project.CinemaApp.entity.dto.CinemaManagerDTO;
 import com.project.CinemaApp.entity.dto.UserDTO;
 import com.project.CinemaApp.service.CinemaService;
@@ -122,8 +124,11 @@ public class CinemasController {
         Set<User> notAssociatedUsers = new HashSet<>();
         
         for (User user : allUsers) {
-        	if(user.getRole() == "MENADZER" && !IsCinemasManager(cinema.getManagers(), user)) {
-        		notAssociatedUsers.add(user);
+        	if(user.getRole().equals("MENADZER")) {
+        	    Set<User> managers = cinema.getManagers();
+        		if(!IsCinemasManager(managers, user)) {
+        			notAssociatedUsers.add(user);
+        		}
         	}
         }
         
@@ -142,15 +147,26 @@ public class CinemasController {
 	@PostMapping(path = "/managers/remove", consumes = MediaType.APPLICATION_JSON_VALUE) 
     public void removeManagerFromCinema(@RequestBody CinemaManagerDTO cinemaManagerDTO) throws Exception {
         Cinema cinema = this.service.findOne(cinemaManagerDTO.cinemaId);
-        User manager = this.userService.findOne(cinemaManagerDTO.managerId);
-        cinema.removeManager(manager);
+        Set<User> cinemaManagers = cinema.getManagers();
+        User user = null;
+        for (User mng : cinemaManagers) {
+        	if(mng.getId().equals(cinemaManagerDTO.managerId)) {
+        		user = mng;
+        		break;
+        	}
+        }
+        
+        if(user == null)
+        	return;
+        
+        cinema.removeManager(user);
         
         this.service.save(cinema);
     }
 	
 	private boolean IsCinemasManager(Set<User> cinemasManagers, User manager){
 		for (User mng : cinemasManagers) {
-			if(mng.getId() == mng.getId()) {
+			if(mng.getId() == manager.getId()) {
 				return true;
 			}
 		}

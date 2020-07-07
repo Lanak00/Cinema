@@ -2,22 +2,33 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
 	     <script src="/js/jquery.min.js"></script>
-    	 <script type="text/javascript" src="/js/cinema.js"></script>
+    	 <script type="text/javascript" src="/js/adminCinema.js"></script>
   		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
    		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
      	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      	 
-	    <title>Home Page</title>
-	    <meta charset="utf-8"/>
+	     <title>Home Page</title>
+	     <meta charset="utf-8"/>
 	</head>
 	<body>
+		<nav class="nav-wraper teal lighten-3">
+			<div class="container">
+				<ul class="left">
+					<li id="mov"><a>Filmovi</a></li>
+					<li id="cin" class="active"><a>Bioskopi</a></li>
+					<li id="man"><a>Menadzeri</a></li>
+				</ul>
+				<ul class="right">
+					<li><a id="logout">Odjavi se</a></li>
+				</ul>
+			</div>
+		</nav>
+		
 		<div id="cinemaStuff">
-				<button id="addButton">Dodaj bioskop</button>
-		        <table id="cinemas">
-		       		
-		        </table>
-	    	
-	    		<button onclick="location.href = 'managers.html'">Menadzeri</button>
+			<button id="addButton">Dodaj bioskop</button>
+	        <table id="cinemas">
+	       		
+	        </table>
     	</div>
     	
     	<div class="formModify" hidden>
@@ -29,7 +40,7 @@
 				<label for="address">Adresa<label>
 				<input type="text" id="address"/> 
 				<label for="mobilePhone">Telefon<label>
-				<input type="text" id="mobilePhone" />
+				<input type="text" id="mobilePhone"/>
 				<label for="email">Email<label>
 				<input type="text" id="email"/> 
 				<button type="submit">Izmeni bioskop</button>
@@ -52,17 +63,25 @@
   	    </div>
   	    
   	    <div id="cinemaManagersStuff" hidden>
-  	    	<table id="cinemaManagers">
-  	    	</table>
+  	    	<div>
+	  	    	<table id="cinemaManagers">
+	  	    	</table>
+  	    	</div>
   	    	
-  	    	<form>
-  	    		<select id="otherManagers">
-  	    		</select>
-  	    		
-  	    		<button>Add manager</button> 
-  	    	</form>
-  	    	
-  	    	<button id="goToCinemas">Bioskopi</button>
+  	    	<div>
+	  	    	<form>
+	  	    		<label for="otherManagers">Menadzeri</label>
+	  	    		<div>
+		  	    		<select class="browser-default" id="otherManagers">
+		  	    		</select>
+		  	    	</div>
+		  	    	
+		  	    	<button>Add manager</button>
+	  	    	</form>
+  	    	</div>
+  	    	<div>
+  	    		<button id="goToCinemas">Bioskopi</button>
+  	    	</div>
   	    </div>
 	</body>
 	 	

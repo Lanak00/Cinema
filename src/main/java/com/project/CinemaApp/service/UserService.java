@@ -38,6 +38,13 @@ public class UserService {
 		if(obj != null)
 			this.userRepository.delete(obj);
 	}
-
+    
+    public List<User> findByUsername(String username){
+    	return this.userRepository.findByUsername(username);
+    }
+    
+    public List<User> findByPassword(String password){
+    	return this.userRepository.findByPassword(password);
+    }
    
 }

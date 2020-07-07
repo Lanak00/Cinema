@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+	     <script src="/js/jquery.min.js"></script>
+    	 <script type="text/javascript" src="/js/managers.js"></script>
+  		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     	 
+	     <title>Home Page</title>
+	     <meta charset="utf-8"/>
+	</head>
+	<body>
+		<nav class="nav-wraper teal lighten-3">
+			<div class="container">
+				<ul class="left">
+					<li id="mov"><a>Filmovi</a></li>
+					<li class="active" id="cin"><a>Bioskopi</a></li>
+				</ul>
+				<ul class="right">
+					<li><a id="logout">Odjavi se</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+		<div id="cinemaStuff">
+	        <table id="cinemas">
+	       		
+	        </table>
+    	</div>
+    	
+    	<div id="hallStuff" hidden>
+    		<div id="hallsView">
+	    		<button id="addHallButton">Dodaj salu</button>
+	    		<table id="halls">
+		       		
+		        </table>
+	        </div>
+	        
+	        <div id="addHallForm">
+		        <div class="card-content">
+					<form>
+						<div class="form-field">
+							<label for="hallMark">Oznaka</label> 
+							<input type="text" id="hallMark"/>
+						</div>
+						<div class="form-field">
+							<label for="capacity">Kapacitet<label>
+							<input type="number" id="capacity"/> 
+						</div>
+						<div class="form-field">
+							<button type="submit" class="btn">Dodaj</button>
+						</div>
+					</form>	
+		        </div>
+	        </div>
+	        
+	        <div class="card-content" id="modifyHallForm">
+				<form>
+					<input type="text" id="id" hidden/>
+					<div class="form-field">
+						<label for="hallMark">Oznaka</label> 
+						<input type="text" id="hallMark"/>
+					</div>
+					<div class="form-field">
+						<label for="capacity">Kapacitet<label>
+						<input type="number" id="capacity"/> 
+					</div>
+					<div class="form-field">
+						<button type="submit" class="btn">Izmeni</button>
+					</div>
+				</form>	
+	        </div>
+    	</div>
+    	
+    	<div id="projectionStuff" hidden>
+    		<div id="projectionView">
+	    		<button id="addProjectionButton">Dodaj projekciju</button>
+	    		<table id="projections">
+	    		
+		        </table>
+	        </div>
+	        
+	        <div id="addProjectionForm" hidden>
+		        <div class="card-content">
+					<form>
+						<div class="form-field">
+							<select class="browser-default" id="movieSelect">
+								
+			  	    		</select>
+		  	    		</div>
+		  	    		<div class="form-field">
+							<select class="browser-default" id="hallSelect" multiple>
+							
+			  	    		</select>
+		  	    		</div>
+						<div class="form-field">
+							<label for="date">Datum:</label>
+				 			<input type="date" id="date" min="2020-29-06" max="2020-12-08">
+						</div>
+						<div class="form-field">
+							<label for="time">Termin</label>
+				 			<input type="time" id="time" min="11:00" max="22:00">
+						</div>
+						<div class="form-field">
+							<label for="price">Cena</label>
+				 			<input type="number" id="price">
+						</div>
+						<div class="form-field">
+							<button type="submit" class="btn">Dodaj</button>
+						</div>
+					</form>	
+		        </div>
+	        </div>
+	        
+	        <div id="modifyProjectionForm" hidden>
+		        <div class="card-content">
+					<form>
+						<input type="text" id="id" hidden>
+						<div class="form-field">
+							<label for="datee">Datum:</label>
+				 			<input type="date" id="datee" min="2020-29-06" max="2020-12-08">
+						</div>
+						<div class="form-field">
+							<label for="timee">Termin</label>
+				 			<input type="time" id="timee" min="11:00" max="22:00">
+						</div>
+						<div class="form-field">
+							<label for="pricee">Cena</label>
+				 			<input type="number" id="pricee">
+						</div>
+						<div class="form-field">
+							<button type="submit" class="btn">Izmeni</button>
+						</div>
+					</form>	
+		        </div>
+	        </div>
+    	</div>
+    	
+    	
+	</body>
+	 	

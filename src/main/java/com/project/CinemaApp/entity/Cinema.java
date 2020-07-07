@@ -33,7 +33,10 @@ public class Cinema implements Serializable{
 	@OneToMany(mappedBy="cinema", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<CinemaHall> halls = new HashSet<>();
 	
-	@ManyToMany (mappedBy = "managedCinemas")
+	@ManyToMany
+	@JoinTable  (name = "manager_cinema",
+				joinColumns = @JoinColumn(name = "cinema_id", referencedColumnName = "id"),
+		        inverseJoinColumns = @JoinColumn(name = "manager_id", referencedColumnName = "id"))
 	private Set<User> managers = new HashSet<>();
 
 	
@@ -47,10 +50,12 @@ public class Cinema implements Serializable{
 	
 	public void addManager(User manager) {
 		managers.add(manager);
+		manager.getManagedCinemas().add(this);
 	}
 	
 	public void removeManager(User manager) {
 		managers.remove(manager);
+		manager.getManagedCinemas().remove(this);
 	}
 	
 	public Long getId() {

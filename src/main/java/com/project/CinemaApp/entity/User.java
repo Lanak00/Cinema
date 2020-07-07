@@ -52,11 +52,16 @@ public class User implements Serializable{
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<WatchedMovies> watchedMovies = new HashSet<WatchedMovies>();
 	
-	@ManyToMany
-	@JoinTable  (name = "manager_cinema",
-    			joinColumns = @JoinColumn(name = "manager_id", referencedColumnName = "id"),
-    			inverseJoinColumns = @JoinColumn(name = "cinema_id", referencedColumnName = "id"))
+	@ManyToMany (mappedBy = "managers")
 	private Set<Cinema> managedCinemas = new HashSet<>();
+	
+	public Set<Cinema> getManagedCinemas() {
+		return managedCinemas;
+	}
+
+	public void setManagedCinemas(Set<Cinema> managedCinemas) {
+		this.managedCinemas = managedCinemas;
+	}
 
 	public Long getId() {
 		return id;

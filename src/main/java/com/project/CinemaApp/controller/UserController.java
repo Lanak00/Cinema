@@ -43,7 +43,7 @@ public class UserController {
         model.addAttribute("user", new User());
         return "registration.html";
     }
-		
+		 
 	@PostMapping("/save-user") 
     public String saveUser(@ModelAttribute("user") User user) {
 		user.setRole("KORISNIK");

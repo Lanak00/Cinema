@@ -11,7 +11,7 @@ $(document).ready(function () {
         error: function (data) {
             console.log("ERROR : ", data);
         }
-    }); 
+    });
 });
 
 $(document).on('click', '#addButton', function () {
@@ -64,12 +64,14 @@ $(document).on('click', '.btnDelete', function () {
 $(document).on('click', '.btnManagers', function () {            
     $("#cinemaManagersStuff").show();
     $("#cinemaStuff").hide();
-     
+    $("#otherManagers").formSelect();
+    
     cinemaId = this.id;
 	populateManagersTables();
 });
 
-$(document).on('click', '.btnDeleteManager', function () {            
+$(document).on('click', '.btnDeleteManager', function (event) {  
+	event.preventDefault();          
     var toSend = JSON.stringify({
     	"cinemaId": cinemaId,
         "managerId": this.id
@@ -92,10 +94,11 @@ $(document).on('click', '.btnDeleteManager', function () {
 
 $(document).on('click', '#goToCinemas', function () {            
     $("#cinemaManagersStuff").hide();
-    $("#cinemaStuff").shows();                                  
+    $("#cinemaStuff").show();                                  
 });
 
-$(document).on('click', '#cinemaManagersStuff form button', function () {
+$(document).on('click', '#cinemaManagersStuff form button', function (event) {
+	event.preventDefault();
 	var selected = $("#otherManagers option:selected").val()
 	if (isNaN(selected)) {
 		return;
@@ -235,9 +238,10 @@ function populateTable(data) {
        	
         var btnIzmeni = "<button class='btnModify' id = " + data[i]['id'] + ">Izmeni</button>";
         var btnObrisi = "<button class='btnDelete' id = " + data[i]['id'] + ">Obrisi</button>";
-        var btnObrisi = "<button class='btnManagers' id = " + data[i]['id'] + ">Menadzeri</button>";
+        var btnMenadzeri = "<button class='btnManagers' id = " + data[i]['id'] + ">Menadzeri</button>";
         row += "<td>" + btnIzmeni + "</td>";
-        row += "<td>" + btnObrisi + "</td>"; 
+        row += "<td>" + btnObrisi + "</td>";
+        row += "<td>" + btnMenadzeri + "</td>"; 
 
         $('#cinemas').append(row);                            
     }
@@ -276,7 +280,6 @@ function showOtherAndCloseForms() {
 
 
 function populateManagersTables() {
-
 	var cinemaManagers = $('#cinemaManagers');
 	    
 	    $.ajax({
@@ -316,22 +319,51 @@ function populateManagersTables() {
 	        }
 	    }); 
 	    
-	    var select = $('#otherManagers');
 	    
 	    $.ajax({
 	        type: "GET",                                                
 	        url: "http://localhost:8080/api/cinemas/managers/not-contained/" + cinemaId,                 
 	        dataType: "json",                                           
 	        success: function (data) {
-	            select.empty();
-	            
+	        	var select = $('#otherManagers');
+	        	select.empty();
+	        
 	            for (i = 0; i < data.length; i++) {
-	            	var display = data[i]['username'] + ' ( ' + data[i]['firstName'] + ' ' + data[i]['lastName'] + ' )'; 
-	            	select.append('<option value=' + data[i]['id'] + '>'+ display +'</option>');
+	            	var display = data[i]['username'] + ' ( ' + data[i]['firstName'] + ' ' + data[i]['lastName'] + ' )';
+	            	var option = "<option value=" + data[i]['id'] + ">" + display + "</option>"
+	            	select.append(option);
 	            }
+	            
+	            
 	        },
 	        error: function (data) {
 	            console.log("ERROR : ", data);
 	        }
 	    }); 
 }
+
+$(document).on('click', '#mov', function () {
+	location.href = '/AdministratorPages/AdministratorMovies.html';
+});
+
+$(document).on('click', '#cin', function () {
+	location.href = '/AdministratorPages/AdministratorCinemas.html';
+});
+
+$(document).on('click', '#man', function () {
+	location.href = '/AdministratorPages/AdministratorManagers.html';
+});
+
+$(document).on('click', '#logout', function () {
+	$.ajax({
+        type: "GET",                                               
+        url: "http://localhost:8080/api/logout",                                                          
+        success: function () {
+           location.href = "/templates/login.html";
+        },
+        error: function (data) {
+            console.log("ERROR : ", data);
+        }
+    });
+});
+

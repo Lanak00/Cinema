@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.CinemaApp.entity.Cinema;
 import com.project.CinemaApp.entity.Projection;
 import com.project.CinemaApp.repository.ProjectionRepository;
 
@@ -25,5 +26,10 @@ public class ProjectionService {
     public Projection save(Projection cinema) {
         return this.repository.save(cinema);
     }
-
+    
+    public void delete(Long id){
+		Projection projection = this.repository.getOne(id);
+		if(projection != null)
+			this.repository.delete(projection);
+	}
 }

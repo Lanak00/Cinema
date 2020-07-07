@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
 	     <script src="/js/jquery.min.js"></script>
-    	 <script type="text/javascript" src="/js/manager.js"></script>
+    	 <script type="text/javascript" src="/js/adminManager.js"></script>
   		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
    		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
      	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -11,6 +11,19 @@
 	     <meta charset="utf-8"/>
 	</head>
 	<body>
+		<nav class="nav-wraper teal lighten-3">
+			<div class="container">
+				<ul class="left">
+					<li id="mov"><a>Filmovi</a></li>
+					<li id="cin"><a>Bioskopi</a></li>
+					<li id="man" class="active"><a>Menadzeri</a></li>
+				</ul>
+				<ul class="right">
+					<li><a id="logout">Odjavi se</a></li>
+				</ul>
+			</div>
+		</nav>
+		
 		<div id="managersStuff">
 			<button id="addButton">Registruj menadzera</button>
 	        <table id="managers">
@@ -19,7 +32,7 @@
     	</div>
     	
   	    <div class="formAdd" hidden>
-			<h1>Dodaj menadzera<h1>
+			<h1>Dodaj bioskop<h1>
 			<form id="registerForm">
 				<div class="form-field">
 					<label for="firstName">Ime</label> 
@@ -58,7 +71,7 @@
 					<input type="number" id="birthDay"/> 
 				</div>
 				<div class="form-field">
-					<button type="submit" class="btn">Registruj menadzera</button>
+					<button type="submit" class="btn">Registruj menagera</button>
 				</div>
 			</form>
   	    </div>		

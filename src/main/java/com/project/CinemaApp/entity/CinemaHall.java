@@ -22,7 +22,7 @@ public class CinemaHall implements Serializable{
 	@Column
 	private String hallMark;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cinema_id", nullable = false)
     private Cinema cinema;
 	
@@ -32,6 +32,14 @@ public class CinemaHall implements Serializable{
 				inverseJoinColumns = @JoinColumn(name = "projection_id", referencedColumnName = "id"))
 	private Set<Projection> projections = new HashSet<>();
 	
+	public Set<Projection> getProjections() {
+		return projections;
+	}
+
+	public void setProjections(Set<Projection> projections) {
+		this.projections = projections;
+	}
+
 	public Long getId() {
 		return id;
 	}

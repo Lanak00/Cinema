@@ -146,3 +146,29 @@ function showOtherAndCloseForm() {
 	otherStuff.show();
     form.hide();
 }
+
+$(document).on('click', '#mov', function () {
+	location.href = '/AdministratorPages/AdministratorMovies.html';
+});
+
+$(document).on('click', '#cin', function () {
+	location.href = '/AdministratorPages/AdministratorCinemas.html';
+});
+
+$(document).on('click', '#man', function () {
+	location.href = '/AdministratorPages/AdministratorManagers.html';
+});
+
+$(document).on('click', '#logout', function () {
+	$.ajax({
+        type: "GET",                                               
+        url: "http://localhost:8080/api/logout",                                                          
+        success: function () {
+           location.href = "/templates/login.html";
+        },
+        error: function (data) {
+            console.log("ERROR : ", data);
+        }
+    });
+});
+

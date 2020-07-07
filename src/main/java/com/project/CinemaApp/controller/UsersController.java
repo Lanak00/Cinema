@@ -2,6 +2,7 @@ package com.project.CinemaApp.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.CinemaApp.entity.Cinema;
 import com.project.CinemaApp.entity.User;
+import com.project.CinemaApp.entity.dto.CinemaDTO;
 import com.project.CinemaApp.entity.dto.UserDTO;
 import com.project.CinemaApp.service.UserService;
 
@@ -54,7 +57,7 @@ public class UsersController {
 	
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE) 
-    public void addUser(@RequestBody UserDTO userDTO) throws Exception {
+    public void addManager(@RequestBody UserDTO userDTO) throws Exception {
         User user = new User();
         user.setBirthDate(userDTO.birthDate);
         user.setEmail(userDTO.email);
@@ -77,6 +80,25 @@ public class UsersController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-        
     }
+	
+	@GetMapping(value = "/getAssociatedCinemas/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<CinemaDTO>> getManagerCinemas(@PathVariable("id") Long id) {
+        User manager = this.service.findOne(id);
+        Set<Cinema> managedCinemas =  manager.getManagedCinemas();
+        List<CinemaDTO> DTOs = new ArrayList<>();
+        
+        for (Cinema model : managedCinemas) {
+        	CinemaDTO DTO = new CinemaDTO();
+        	DTO.adress = model.getAdress();
+            DTO.eMail = model.geteMail();
+            DTO.id = model.getId();
+            DTO.name = model.getName();
+            DTO.phoneNumber = model.getPhoneNumber();
+            DTOs.add(DTO);
+        }
+        
+        return new ResponseEntity<>(DTOs, HttpStatus.OK);
+    }
+	
 }

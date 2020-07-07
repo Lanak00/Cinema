@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
 	     <script src="/js/jquery.min.js"></script>
-    	 <script type="text/javascript" src="/js/movie.js"></script>
+    	 <script type="text/javascript" src="../js/movie.js"></script>
   		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
    		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
      	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,13 +13,16 @@
 	<body>
 		<nav class="nav-wraper teal lighten-3">
 			<div class="container">
-				<a href="#" class="brand-logo">Bioskop</a>
+				<ul class="left">
+					<li class="active" id="manMov"><a>Filmovi</a></li>
+					<li id="manCin"><a>Bioskopi</a></li>
+				</ul>
 				<ul class="right">
-					<li><a onclick="location.href = 'registration.html'">Registruj se</a></li>
-					<li><a onclick="location.href = 'login.html'">Uloguj se</a></li>
+					<li><a id="logout">Odjavi se</a></li>
 				</ul>
 			</div>
 		</nav>
+		
 		<div class="container">
 	        <table id="movies">
 	            
