@@ -26,6 +26,7 @@ import com.project.CinemaApp.entity.Projection;
 import com.project.CinemaApp.entity.dto.MovieDTO;
 import com.project.CinemaApp.entity.dto.ProjectionAddDTO;
 import com.project.CinemaApp.entity.dto.ProjectionDTO;
+import com.project.CinemaApp.entity.dto.ProjectionRegularUserDTO;
 import com.project.CinemaApp.service.CinemaHallService;
 import com.project.CinemaApp.service.CinemaService;
 import com.project.CinemaApp.service.MovieService;
@@ -89,6 +90,44 @@ public class ProjectionController {
         return new ResponseEntity<>(createProjectionDTO(projection), HttpStatus.OK);
     }
 	
+	@GetMapping(
+            value = "/getProjectionsOfMovie/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<ProjectionRegularUserDTO>> getProjectionsOfMovie(@PathVariable(name = "id") Long id) {
+		Movie movie = this.movieService.findOne(id);
+		Set<Projection> projections = movie.getProjections();
+		List<ProjectionRegularUserDTO> DTOs = new ArrayList<>();
+		
+		for(Projection projection : projections) {
+			Set<CinemaHall> cinemaHalls = projection.getHalls();
+			Cinema cinema = null;
+			for(CinemaHall ch : cinemaHalls) {  //nazalost nema drugog nacina da se uzme prvi element
+				cinema = ch.getCinema();
+				break;
+			}
+			
+			
+			ProjectionRegularUserDTO dto = new ProjectionRegularUserDTO();
+			dto.movie = new MovieDTO();
+			dto.movie.id = movie.getId();
+			dto.movie.averageRating = movie.getAverageRating();
+			dto.movie.description = movie.getDescription();
+			dto.movie.duration = movie.getDuration();
+			dto.movie.genre = movie.getGenre();
+			dto.movie.title = movie.getTitle();
+			dto.id = projection.getId();
+			dto.price = projection.getPrice();
+			dto.ticketsReserved = projection.getTicketsReserved();
+			dto.dateAndTime = convertDateToString(projection.getDateAndTime());
+			dto.cinemaName = cinema.getName();
+			
+			DTOs.add(dto);
+		}
+		
+        return new ResponseEntity<>(DTOs, HttpStatus.OK);
+    }
+	
+	
 	@PostMapping(path = "/modify" , consumes = MediaType.APPLICATION_JSON_VALUE) 
     public void modifyProjection(@RequestBody ProjectionDTO projectionDTO) throws Exception {
         Projection projection = this.service.findOne(projectionDTO.id);
@@ -114,7 +153,6 @@ public class ProjectionController {
 		}
 		
 		Movie movie = this.movieService.findOne(projectionAddDTO.movieId);
-		//movie.getProjections().add(projection);
 		projection.setMovie(movie);
 		
         this.service.save(projection);

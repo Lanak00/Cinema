@@ -27,7 +27,7 @@ $(document).on('click', '#logButton', function (event) {
         data: toSend,
         success: function (data) {
 			if(data == "KORISNIK"){
-				location.href = 'regularUser.html';
+				location.href = 'RegularUserPages/RegularUserMovies.html';
 			}
 			else if(data == "MENADZER"){
 				location.href = 'ManagerPages/ManagerMovies.html';

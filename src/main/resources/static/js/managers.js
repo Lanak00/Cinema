@@ -314,6 +314,7 @@ function formatTime(time) {
     
     return hours + ":" + minutes;
 }
+
 function populateCinemasTable(data) {
     $('#cinemas').empty();
     var header = "<tr>" +
