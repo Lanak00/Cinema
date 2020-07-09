@@ -86,8 +86,8 @@ function populateReservations(data) {
        	row += "<td>" + data[i]['ticketsReserved'] + "</td>";
        	row += "<td>" + data[i]['cinemaName'] + "</td>";
        	
-        var btnPotvrdi = "<button class='btnCheckReservation' id = " + data[i]['id'] + ">Potvrdi</button>";
-        var btnOtkazi = "<button class='btnUncheckReservation' id = " + data[i]['id'] + ">Otkazi</button>";
+        var btnPotvrdi = "<button class='btnCheckReservation btn waves-effect waves-light' id = " + data[i]['id'] + ">Potvrdi</button>";
+        var btnOtkazi = "<button class='btnUncheckReservation btn waves-effect waves-light' id = " + data[i]['id'] + ">Otkazi</button>";
         row += "<td>" + btnPotvrdi + "</td>";
 		row += "<td>" + btnOtkazi + "</td>";
 		
@@ -108,3 +108,16 @@ function getReservations() {
 	    }
    });
 }
+
+$(document).on('click', '#logout', function () {
+	$.ajax({
+        type: "GET",                                               
+        url: "http://localhost:8080/api/logout",                                                          
+        success: function () {
+           window.location.href = "/";
+        },
+        error: function (data) {
+            console.log("ERROR : ", data);
+        }
+    });
+});

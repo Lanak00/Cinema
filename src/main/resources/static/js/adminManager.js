@@ -126,7 +126,7 @@ function populateTable(data) {
         row += "<td>" + data[i]['phone'] + "</td>";
         row += "<td>" + data[i]['birthDate'] + "</td>";
        	
-        var btnObrisi = "<button class='btnDelete' id = " + data[i]['id'] + ">Obrisi</button>";
+        var btnObrisi = "<button class='btnDelete btn waves-effect waves-light' id = " + data[i]['id'] + ">Obrisi</button>";
         row += "<td>" + btnObrisi + "</td>"; 
 
         $('#managers').append(row);                           
@@ -164,11 +164,10 @@ $(document).on('click', '#logout', function () {
         type: "GET",                                               
         url: "http://localhost:8080/api/logout",                                                          
         success: function () {
-           location.href = "/templates/login.html";
+           window.location.href = "/";
         },
         error: function (data) {
             console.log("ERROR : ", data);
         }
     });
 });
-

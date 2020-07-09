@@ -236,9 +236,9 @@ function populateTable(data) {
         row += "<td>" + data[i]['phoneNumber'] + "</td>";
         row += "<td>" + data[i]['eMail'] + "</td>";
        	
-        var btnIzmeni = "<button class='btnModify' id = " + data[i]['id'] + ">Izmeni</button>";
-        var btnObrisi = "<button class='btnDelete' id = " + data[i]['id'] + ">Obrisi</button>";
-        var btnMenadzeri = "<button class='btnManagers' id = " + data[i]['id'] + ">Menadzeri</button>";
+        var btnIzmeni = "<button class='btnModify btn waves-effect waves-light' id = " + data[i]['id'] + ">Izmeni</button>";
+        var btnObrisi = "<button class='btnDelete btn waves-effect waves-light' id = " + data[i]['id'] + ">Obrisi</button>";
+        var btnMenadzeri = "<button class='btnManagers btn waves-effect waves-light' id = " + data[i]['id'] + ">Menadzeri</button>";
         row += "<td>" + btnIzmeni + "</td>";
         row += "<td>" + btnObrisi + "</td>";
         row += "<td>" + btnMenadzeri + "</td>"; 
@@ -308,7 +308,7 @@ function populateManagersTables() {
 			        row += "<td>" + data[i]['phone'] + "</td>";
 			        row += "<td>" + data[i]['birthDate'] + "</td>";
 			       	
-			        var btnObrisi = "<button class='btnDeleteManager' id = " + data[i]['id'] + ">Obrisi</button>";
+			        var btnObrisi = "<button class='btnDeleteManager btn waves-effect waves-light' id = " + data[i]['id'] + ">Obrisi</button>";
 			        row += "<td>" + btnObrisi + "</td>"; 
 			
 			        cinemaManagers.append(row);                           
@@ -359,11 +359,10 @@ $(document).on('click', '#logout', function () {
         type: "GET",                                               
         url: "http://localhost:8080/api/logout",                                                          
         success: function () {
-           location.href = "/templates/login.html";
+           window.location.href = "/";
         },
         error: function (data) {
             console.log("ERROR : ", data);
         }
     });
 });
-

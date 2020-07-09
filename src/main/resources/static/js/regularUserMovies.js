@@ -145,6 +145,11 @@ $(document).on('click', '.btnSeeMore', function () {
     });
 });
 
+$(document).on('click', '#back', function () {
+	$('#moviesStuff').show();
+	$('#movieProjectionsStuff').hide();
+});
+
 $(document).on('click', '.btnReserveProjection', function () {
 	var toSend = JSON.stringify({
         "userId": loggedUser.id,
@@ -170,7 +175,7 @@ $(document).on('click', '#logout', function () {
         type: "GET",                                               
         url: "http://localhost:8080/api/logout",                                                          
         success: function () {
-           location.href = "/templates/login.html";
+           window.location.href = "/";
         },
         error: function (data) {
             console.log("ERROR : ", data);

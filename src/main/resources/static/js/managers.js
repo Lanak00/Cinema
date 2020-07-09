@@ -333,8 +333,8 @@ function populateCinemasTable(data) {
         row += "<td>" + data[i]['phoneNumber'] + "</td>";
         row += "<td>" + data[i]['eMail'] + "</td>";
        	
-        var btnSale = "<button class='btnSale' id = " + data[i]['id'] + ">Sale</button>";
-        var btnRaspored = "<button class='btnRaspored' id = " + data[i]['id'] + ">Raspored</button>";
+        var btnSale = "<button class='btnSale btn waves-effect waves-light' id = " + data[i]['id'] + ">Sale</button>";
+        var btnRaspored = "<button class='btnRaspored btn waves-effect waves-light' id = " + data[i]['id'] + ">Raspored</button>";
         row += "<td>" + btnSale + "</td>";
 		row += "<td>" + btnRaspored + "</td>";
 		
@@ -356,8 +356,8 @@ function populateHallsTable(data) {
         row += "<td>" + data[i]['hallMark'] + "</td>";     
         row += "<td>" + data[i]['capacity'] + "</td>";
        	
-        var btnIzmeni = "<button class='btnModifyHall' id = " + data[i]['id'] + ">Izmeni</button>";
-        var btnObrisi = "<button class='btnDeleteHall' id = " + data[i]['id'] + ">Obrisi</button>";
+        var btnIzmeni = "<button class='btnModifyHall btn waves-effect waves-light' id = " + data[i]['id'] + ">Izmeni</button>";
+        var btnObrisi = "<button class='btnDeleteHall btn waves-effect waves-light' id = " + data[i]['id'] + ">Obrisi</button>";
         row += "<td>" + btnIzmeni + "</td>";
         row += "<td>" + btnObrisi + "</td>";
 
@@ -389,7 +389,7 @@ function populateProjections(data) {
        	row += "<td>" + data[i]['price'] + "</td>";
        	row += "<td>" + data[i]['ticketsReserved'] + "</td>";
        	
-        var btnIzmeni = "<button class='btnModifyProjection' id = " + data[i]['id'] + ">Izmeni</button>";
+        var btnIzmeni = "<button class='btnModifyProjection btn waves-effect waves-light' id = " + data[i]['id'] + ">Izmeni</button>";
         row += "<td>" + btnIzmeni + "</td>";
 
         $('#projections').append(row);                            
@@ -437,7 +437,7 @@ $(document).on('click', '#logout', function () {
         type: "GET",                                               
         url: "http://localhost:8080/api/logout",                                                          
         success: function () {
-           location.href = "/templates/login.html";
+           window.location.href = "/";
         },
         error: function (data) {
             console.log("ERROR : ", data);

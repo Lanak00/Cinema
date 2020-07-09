@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
 	     <script src="/js/jquery.min.js"></script>
-    	 <script type="text/javascript" src="../js/movie.js"></script>
+    	 <script type="text/javascript" src="/js/regularUserMyProfile.js"></script>
   		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
    		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
      	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -24,5 +24,37 @@
 				</ul>
 			</div>
 		</nav>
+		
+		<div class="container">
+			<h2> Moj Profil </h2>
+			<table>
+		        <tbody>
+		          <tr>
+		            <th>Ime</th>
+		            <td id="firstName"></td>
+		          </tr>
+		         <tr>
+		            <th>Prezime</th>
+		            <td id="lastName"></td>
+		          </tr>
+		          <tr>
+		            <th>Korisnicko ime</th>
+		            <td id="username"></td>
+		          </tr>
+		          <tr>
+		            <th>Email</th>
+		            <td id="email"></td>
+		          </tr>
+		          <tr>
+		            <th>Telefon</th>
+		            <td id="phone"></td>
+		          </tr>
+		          <tr>
+		            <th>Datum rodjenja</th>
+		            <td id="birthday"></td>
+		          </tr>
+		        </tbody>
+      		</table>
+		</div>
 	</body>
 	

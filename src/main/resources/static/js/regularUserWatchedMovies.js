@@ -79,7 +79,7 @@ function populateWatchedMovies(data) {
         	row += "<td>" + personalRating + "</td>";
         }
         else {
-        	var btnOceni = "<button class='btnRate' id = " + data[i]['id'] + " >Oceni</button>";
+        	var btnOceni = "<button class='btnRate btn waves-effect waves-light' id = " + data[i]['id'] + " >Oceni</button>";
         	row += "<td>" + btnOceni + "</td>";
        
        		var selectRating = "<select class='browser-default' id = 'select" + data[i]['id'] + "' >" + 
@@ -116,3 +116,16 @@ function getWatchedMovies() {
     }
    });
 }
+
+$(document).on('click', '#logout', function () {
+	$.ajax({
+        type: "GET",                                               
+        url: "http://localhost:8080/api/logout",                                                          
+        success: function () {
+           window.location.href = "/";
+        },
+        error: function (data) {
+            console.log("ERROR : ", data);
+        }
+    });
+});

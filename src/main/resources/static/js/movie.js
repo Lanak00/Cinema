@@ -1,35 +1,11 @@
-var movies;
 
 $(document).ready(function () { 
     $.ajax({
-        type: "GET",                                                // HTTP metoda
-        url: "http://localhost:8080/api/movies",                 // URL koji se gađa
-        dataType: "json",                                           // tip povratne vrednosti
+        type: "GET",                                               
+        url: "http://localhost:8080/api/movies",        
+        dataType: "json",                                          
         success: function (data) {
-            var header = "<tr>" + 
-            "<th>Title</th>" + 
-            "<th>Description</th>" +
-            "<th>Genre</th>" + 
-            "<th>Duration</th>" + 
-            "<th>Average Rating</th>" +
-            "</tr>"
-            $('#movies').append(header);
-            
-            for (i = 0; i < data.length; i++) {                     // prolazimo kroz listu svih zaposlenih
-	            var row = "<tr>";                                   // kreiramo red za tabelu
-	            row += "<td>" + data[i]['title'] + "</td>";     // ubacujemo podatke jednog zaposlenog u polja
-	            row += "<td>" + data[i]['description'] + "</td>";
-	            row += "<td>" + data[i]['genre'] + "</td>";
-	            row += "<td>" + data[i]['duration'] + "</td>";
-	            row += "<td>" + data[i]['averageRating'] + "</td>";
-	
-	            var btn = "<button class='btnSeeMore' id = " + data[i]['id'] + ">See more</button>";
-	            row += "<td>" + btn + "</td>";                      // ubacujemo button u poslednje polje reda
-	
-	            $('#movies').append(row);                            // ubacujemo kreirani red u tabelu čiji je id = employees
-	        }
-            
-            movies = data;
+           populateMovies(data);
         },
         error: function (data) {
             console.log("ERROR : ", data);
@@ -43,7 +19,7 @@ $(document).ready(function () {
 });
 
 
-$(document).on("submit", "#searchForm", function (event) {           // kada je submitovana forma za kreiranje novog zaposlenog
+$(document).on("submit", "#searchForm", function (event) {    
     event.preventDefault();
     
     var naziv = $("#naziv").val();
@@ -69,37 +45,13 @@ $(document).on("submit", "#searchForm", function (event) {           // kada je 
     });
     
     $.ajax({
-        type: "POST",                                               // HTTP metoda je POST
-        url: "http://localhost:8080/api/movies",                 // URL na koji se šalju podaci
-        dataType: "json",                                           // tip povratne vrednosti
-        contentType: "application/json",                            // tip podataka koje šaljemo
-        data: toSend,                                      // Šaljemo novog zaposlenog
+        type: "POST",                                              
+        url: "http://localhost:8080/api/movies",                 
+        dataType: "json",                                           
+        contentType: "application/json",                            
+        data: toSend,                                      
         success: function (data) {
-            $( "#movies" ).empty();
-            var header = "<tr>" + 
-            "<th>Title</th>" + 
-            "<th>Description</th>" +
-            "<th>Genre</th>" + 
-            "<th>Duration</th>" + 
-            "<th>Average Rating</th>" +
-            "</tr>"
-            $('#movies').append(header);
-            
-            for (i = 0; i < data.length; i++) {                     // prolazimo kroz listu svih zaposlenih
-	            var row = "<tr>";                                   // kreiramo red za tabelu
-	            row += "<td>" + data[i]['title'] + "</td>";     // ubacujemo podatke jednog zaposlenog u polja
-	            row += "<td>" + data[i]['description'] + "</td>";
-	            row += "<td>" + data[i]['genre'] + "</td>";
-	            row += "<td>" + data[i]['duration'] + "</td>";
-	            row += "<td>" + data[i]['averageRating'] + "</td>";
-	
-	            var btn = "<button class='btnSeeMore' id = " + data[i]['id'] + ">See more</button>";
-	            row += "<td>" + btn + "</td>";                      // ubacujemo button u poslednje polje reda
-	
-	            $('#movies').append(row);                            // ubacujemo kreirani red u tabelu čiji je id = employees
-	        }
-            
-            movies = data;
+            populateMovies(data);
         },
         error: function (data) {
             alert("Greška!");
@@ -108,7 +60,7 @@ $(document).on("submit", "#searchForm", function (event) {           // kada je 
 });
 
 
-$(document).on("submit", "#sortForm", function (event) {           // kada je submitovana forma za kreiranje novog zaposlenog
+$(document).on("submit", "#sortForm", function (event) {         
     event.preventDefault();
     
     var naziv = $("#naziv").val();
@@ -134,37 +86,13 @@ $(document).on("submit", "#sortForm", function (event) {           // kada je su
     });
     
     $.ajax({
-        type: "POST",                                               // HTTP metoda je POST
-        url: "http://localhost:8080/api/movies",                 // URL na koji se šalju podaci
-        dataType: "json",                                           // tip povratne vrednosti
-        contentType: "application/json",                            // tip podataka koje šaljemo
-        data: toSend,                                      // Šaljemo novog zaposlenog
+        type: "POST",                                              
+        url: "http://localhost:8080/api/movies",                
+        dataType: "json",                                           
+        contentType: "application/json",                           
+        data: toSend,                                     
         success: function (data) {
-            $( "#movies" ).empty();
-            var header = "<tr>" + 
-            "<th>Title</th>" + 
-            "<th>Description</th>" +
-            "<th>Genre</th>" + 
-            "<th>Duration</th>" + 
-            "<th>Average Rating</th>" +
-            "</tr>"
-            $('#movies').append(header);
-            
-            for (i = 0; i < data.length; i++) {                     // prolazimo kroz listu svih zaposlenih
-	            var row = "<tr>";                                   // kreiramo red za tabelu
-	            row += "<td>" + data[i]['title'] + "</td>";     // ubacujemo podatke jednog zaposlenog u polja
-	            row += "<td>" + data[i]['description'] + "</td>";
-	            row += "<td>" + data[i]['genre'] + "</td>";
-	            row += "<td>" + data[i]['duration'] + "</td>";
-	            row += "<td>" + data[i]['averageRating'] + "</td>";
-	
-	            var btn = "<button class='btnSeeMore' id = " + data[i]['id'] + ">See more</button>";
-	            row += "<td>" + btn + "</td>";                      // ubacujemo button u poslednje polje reda
-	
-	            $('#movies').append(row);                            // ubacujemo kreirani red u tabelu čiji je id = employees
-	        }
-            
-            movies = data;
+            populateMovies(data);
         },
         error: function (data) {
             alert("Greška!");
@@ -179,38 +107,91 @@ $(document).on("change", '#sort', function (event) {
 	        url: sortUrl,                 
 	        dataType: "json",                 
 	        success: function (data) {
-	            $( "#movies" ).empty();
-	            var header = "<tr>" + 
-	            "<th>Title</th>" + 
-	            "<th>Description</th>" +
-	            "<th>Genre</th>" + 
-	            "<th>Duration</th>" + 
-	            "<th>Average Rating</th>" +
-	            "</tr>"
-	            $('#movies').append(header);
-	            
-	            for (i = 0; i < data.length; i++) {                     
-		            var row = "<tr>";                                  
-		            row += "<td>" + data[i]['title'] + "</td>";     
-		            row += "<td>" + data[i]['description'] + "</td>";
-		            row += "<td>" + data[i]['genre'] + "</td>";
-		            row += "<td>" + data[i]['duration'] + "</td>";
-		            row += "<td>" + data[i]['averageRating'] + "</td>";
-		
-		            var btn = "<button class='btnSeeMore' id = " + data[i]['id'] + ">See more</button>";
-		            row += "<td>" + btn + "</td>";                      
-		
-		            $('#movies').append(row);
-		        }
-	            
-	            movies = data;
+	            populateMovies(data);
 	        },
 	        error: function (data) {
 	            alert("Greška!");
 	        }
-	    });
+	   });
 });
 
+$(document).on('click', '.btnSeeMore', function () {
+	$('#moviesStuff').hide();
+	$('#movieProjectionsStuff').show();
+	
+	$.ajax({
+        type: "GET",                                                
+        url: "http://localhost:8080/api/projections/getProjectionsOfMovie/" + this.id,                
+        dataType: "json",                                           
+        success: function (data) {
+        	populateProjections(data);
+        },
+        error: function (data) {
+            console.log("ERROR : ", data);
+        }
+    });
+});
+
+$(document).on('click', '#back', function () {
+	$('#moviesStuff').show();
+	$('#movieProjectionsStuff').hide();
+});
+
+function populateProjections(data) {
+	$('#movieProjections').empty();
+    var header = "<tr>" +
+    "<th>Naslov filma</th>" + 
+    "<th>Trajanje</th>" +
+    "<th>Zanr</th>" +
+    "<th>Ocena</th>" + 
+    "<th>Vreme</th>" +
+    "<th>Cena</th>" +
+    "<th>Broj rezervisanih karata</th>" + 
+    "<th>Bioskop</th>" +   
+    "</tr>";
+    
+    $('#movieProjections').append(header);
+    
+    for (i = 0; i < data.length; i++) {                     
+        var row = "<tr>";                                   
+        row += "<td>" + data[i]['movie']['title'] + "</td>";     
+        row += "<td>" + data[i]['movie']['duration'] + "</td>";
+       	row += "<td>" + data[i]['movie']['genre'] + "</td>";
+       	row += "<td>" + data[i]['movie']['averageRating'] + "</td>";
+       	row += "<td>" + data[i]['dateAndTime'] + "</td>";
+       	row += "<td>" + data[i]['price'] + "</td>";
+       	row += "<td>" + data[i]['ticketsReserved'] + "</td>";
+       	row += "<td>" + data[i]['cinemaName'] + "</td>";
+       	
+        $('#movieProjections').append(row);                            
+    }
+}
+
+function populateMovies(data) {
+	$( "#movies" ).empty();
+    var header = "<tr>" + 
+    "<th>Naslov</th>" + 
+    "<th>Opis</th>" +
+    "<th>Zanr</th>" + 
+    "<th>Trajanje</th>" + 
+    "<th>Prosecna ocena</th>" +
+    "</tr>"
+    $('#movies').append(header);
+    
+    for (i = 0; i < data.length; i++) {                     
+        var row = "<tr>";                                  
+        row += "<td>" + data[i]['title'] + "</td>";     
+        row += "<td>" + data[i]['description'] + "</td>";
+        row += "<td>" + data[i]['genre'] + "</td>";
+        row += "<td>" + data[i]['duration'] + "</td>";
+        row += "<td>" + data[i]['averageRating'] + "</td>";
+		
+        var btn = "<button class='btnSeeMore btn waves-effect waves-light' id = " + data[i]['id'] + ">Projekcije</button>";
+        row += "<td>" + btn + "</td>";                      
+
+        $('#movies').append(row);
+    }
+}
 
 $(document).on('click', '#mov', function () {
 	location.href = '/AdministratorPages/AdministratorMovies.html';
@@ -229,14 +210,13 @@ $(document).on('click', '#logout', function () {
         type: "GET",                                               
         url: "http://localhost:8080/api/logout",                                                          
         success: function () {
-           location.href = "/templates/login.html";
+           window.location.href = "/";
         },
         error: function (data) {
             console.log("ERROR : ", data);
         }
     });
 });
-
 
 $(document).on('click', '#manMov', function () {
 	location.href = '/ManagerPages/ManagerMovies.html';
