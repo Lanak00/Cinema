@@ -55,6 +55,7 @@ public class User implements Serializable{
 	@ManyToMany (mappedBy = "managers")
 	private Set<Cinema> managedCinemas = new HashSet<>();
 	
+	
 	public Set<Cinema> getManagedCinemas() {
 		return managedCinemas;
 	}

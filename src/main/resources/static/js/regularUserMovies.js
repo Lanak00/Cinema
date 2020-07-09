@@ -1,4 +1,5 @@
 var movies;
+var loggedUser = null;
 
 $(document).ready(function () { 
     $.ajax({
@@ -13,10 +14,21 @@ $(document).ready(function () {
         }
     });
     
+    $.ajax({
+        type: "GET",                                                
+        url: "http://localhost:8080/api/getLoggedUser",                 
+        dataType: "json",                                           
+        success: function (data) {
+            loggedUser = data;
+        },
+        error: function (data) {
+            console.log("ERROR : ", data);
+        }
+    });
+    
     
     $('#zanr').formSelect();
     $('#sort').formSelect();
-  
 });
 
 
@@ -116,19 +128,6 @@ $(document).on("change", '#sort', function (event) {
 	    });
 });
 
-$(document).on('click', '#logout', function () {
-	$.ajax({
-        type: "GET",                                               
-        url: "http://localhost:8080/api/logout",                                                          
-        success: function () {
-           location.href = "/templates/login.html";
-        },
-        error: function (data) {
-            console.log("ERROR : ", data);
-        }
-    });
-});
-
 $(document).on('click', '.btnSeeMore', function () {
 	$('#moviesStuff').hide();
 	$('#movieProjectionsStuff').show();
@@ -144,7 +143,39 @@ $(document).on('click', '.btnSeeMore', function () {
             console.log("ERROR : ", data);
         }
     });
-	
+});
+
+$(document).on('click', '.btnReserveProjection', function () {
+	var toSend = JSON.stringify({
+        "userId": loggedUser.id,
+        "projectionId": this.id,
+    });
+    
+    $.ajax({
+        type: "POST",                                           
+        url: "http://localhost:8080/api/regularUsers/makeReservation",                                                      
+        contentType: "application/json",                           
+        data: toSend,                                      
+        success: function (data) {
+            alert("Uspesno ste rezervisali projekciju.");
+        },
+        error: function (data) {
+            alert("Doslo je do greske pri rezervaciji.");
+        }
+    });
+});
+
+$(document).on('click', '#logout', function () {
+	$.ajax({
+        type: "GET",                                               
+        url: "http://localhost:8080/api/logout",                                                          
+        success: function () {
+           location.href = "/templates/login.html";
+        },
+        error: function (data) {
+            console.log("ERROR : ", data);
+        }
+    });
 });
 
 
@@ -174,7 +205,7 @@ function populateProjections(data) {
        	row += "<td>" + data[i]['ticketsReserved'] + "</td>";
        	row += "<td>" + data[i]['cinemaName'] + "</td>";
        	
-        var btnRezervisi = "<button class='btnReserveProjection' id = " + data[i]['id'] + ">Rezervisi</button>";
+        var btnRezervisi = "<button class='btnReserveProjection  btn waves-effect waves-light' id = " + data[i]['id'] + ">Rezervisi</button>";
         row += "<td>" + btnRezervisi + "</td>";
 
         $('#movieProjections').append(row);                            
@@ -184,11 +215,11 @@ function populateProjections(data) {
 function populateMovies(data) {
 	$( "#movies" ).empty();
     var header = "<tr>" + 
-    "<th>Title</th>" + 
-    "<th>Description</th>" +
-    "<th>Genre</th>" + 
-    "<th>Duration</th>" + 
-    "<th>Average Rating</th>" +
+    "<th>Naslov</th>" + 
+    "<th>Opis</th>" +
+    "<th>Zanr</th>" + 
+    "<th>Trajanje</th>" + 
+    "<th>Prosecna ocena</th>" +
     "</tr>"
     $('#movies').append(header);
     
@@ -199,12 +230,10 @@ function populateMovies(data) {
         row += "<td>" + data[i]['genre'] + "</td>";
         row += "<td>" + data[i]['duration'] + "</td>";
         row += "<td>" + data[i]['averageRating'] + "</td>";
-
-        var btn = "<button class='btnSeeMore' id = " + data[i]['id'] + ">Projekcije</button>";
+		
+        var btn = "<button class='btnSeeMore  btn waves-effect waves-light' id = " + data[i]['id'] + ">Projekcije</button>";
         row += "<td>" + btn + "</td>";                      
 
         $('#movies').append(row);
     }
-    
-    movies = data;
 }

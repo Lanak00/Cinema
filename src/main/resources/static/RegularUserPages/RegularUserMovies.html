@@ -24,49 +24,81 @@
 				</ul>
 			</div>
 		</nav>
-		<div id="moviesStuff">
-			<div class="container">
-		        <table id="movies">
-		            
-		        </table>
-	    	</div>
-	    	<div>
+		<div class="row" id="moviesStuff">
+	    	<div class="col s3">
 				<form id="searchForm">
-				     <label for="naziv">Naziv</label>
-					 <input type="text" id="naziv">
-					 <label for="zanr">Zanr</label>
-					 <div class="input-field col s12">
-						 <select id="zanr">
-						      <option value="">None</option>
-							  <option value="Action">Action</option>
-							  <option value="Thriller">Thriller</option>
-							  <option value="Comedy">Comedy</option>
-							  <option value="Documentary">Documentary</option>
-							  <option value="SciFi">Sci-Fi</option>
-							  <option value="Historical">Historical</option>
-					     </select>
+					 <div class="row">
+						<label><h4>Pretraga</h4></label>
+					 </div>
+					 <div class="row">
+					 	<div class="input-field col s12">
+				            <label for="naziv" class="black-text text-darken-2">Naziv</label>
+					        <input type="text" id="naziv">
+						</div>
+					 </div>
+					 <div class="row">
+					 	<div>
+						 	 <label for="zanr" class="black-text text-darken-2">Zanr</label>
+							 <select id="zanr" class="white lighten-2">
+							      <option value="">None</option>
+								  <option value="Action">Action</option>
+								  <option value="Thriller">Thriller</option>
+								  <option value="Comedy">Comedy</option>
+								  <option value="Documentary">Documentary</option>
+								  <option value="SciFi">Sci-Fi</option>
+								  <option value="Historical">Historical</option>
+						     </select>
+				     	</div>
+					 </div>
+					 <div class="row">
+					 	<div class="input-field col s12">
+					 		<label for="opis">Opis</label>
+					 		<input type="text" id="opis">
+					 	</div>
+					 </div>
+					 <div class="row">
+					 	<div class="input-field col s6">
+					 		<label for="ocenaMin">Ocena min</label>
+				     		<input type="number" id="ocenaMin">
+				     	</div>
+					 	<div class="input-field col s6">
+				     		<label for="ocenaMax">Ocena max</label>
+				     		<input type="number" id="ocenaMax">
+				     	</div>
+					 </div>
+					 <div class="row">
+					 	<div class="input-field col s6">
+				     		<label for="cenaMin" class="black-text text-darken-2">Cena min</label>
+				     		<input type="number" id="cenaMin">
+				     	</div>
+				     	<div class="input-field col s6">
+				     		<label for="cenaMax" class="black-text text-darken-2">Cena max</label>
+				     		<input type="number" id="cenaMax">
+				     	</div>
 				     </div>
-					 <label for="opis">Opis</label>
-					 <input type="text" id="opis">
-					 <label for="ocenaMin">Ocena min</label>
-				     <input type="number" id="ocenaMin">
-				     <label for="ocenaMax">Ocena max</label>
-				     <input type="number" id="ocenaMax">
-				     <label for="cenaMin">Cena min</label>
-				     <input type="number" id="cenaMin">
-				     <label for="cenaMax">Cena max</label>
-				     <input type="number" id="cenaMax">
-				     <label for="datum">Datum:</label>
-					 <input type="date" id="datum" min="2020-29-06" max="2020-12-08">
-					 <label for="termin">Termin</label>
-					 <input type="time" id="termin" min="11:00" max="22:00">
-			         <input type="submit" value="Pretrazi">
-				</form> 
-				
-				
-				<div>				
-					 <label for="sort">Sortiraj po </label>
-					 <div class="input-field col s12">
+				     <div class="row">
+					 	<div class="input-field col s12">
+				     		<label class="black-text text-darken-2">Datum:</label>
+					 		<input placeholder="" type="date" id="datum" min="2020-29-06" max="2020-12-08">
+					 	</div>
+				     </div>
+					 <div class="row">
+					 	<div class="input-field col s12">
+					 		<label class="black-text text-darken-2">Termin</label>
+					 		<input placeholder="" type="time" id="termin" min="11:00" max="22:00">
+					 	</div>
+				     </div>
+					 <div class="row">
+					 	<div class="input-field col s12">
+			         		<input type="submit" value="Pretrazi" class="btn waves-effect waves-light">
+			         	</div>
+				     </div>
+				</form>
+	    	</div>
+	    	<div class="col s9">
+	    		<div class="row">
+	    			<div class="col s4">		
+					 <label for="sort">Sortiraj</label>
 						 <select id="sort">	  
 							  <option value="title">Naziv</option>
 							  <option value="genre">Zanr</option>
@@ -75,6 +107,11 @@
 					     </select>
 				     </div>
 				</div>
+	    		<div class="row">
+			        <table id="movies">
+			            
+			        </table>
+		        </div>
 	    	</div>
     	</div>
     	
