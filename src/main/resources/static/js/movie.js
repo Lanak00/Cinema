@@ -13,9 +13,8 @@ $(document).ready(function () {
     });
     
     
-    $('#zanr').formSelect();
-    $('#sort').formSelect();
-  
+    $('#zanr').formSelect(); //materialize css
+    $('#sort').formSelect(); //materialize css
 });
 
 
@@ -59,46 +58,6 @@ $(document).on("submit", "#searchForm", function (event) {
     });
 });
 
-
-$(document).on("submit", "#sortForm", function (event) {         
-    event.preventDefault();
-    
-    var naziv = $("#naziv").val();
-    var zanr = $("#zanr").val();
-    var opis = $("#opis").val();
-    var ocenaMin = $( "#ocenaMin" ).val();
-    var ocenaMax = $( "#ocenaMax" ).val();
-    var cenaMin = $( "#cenaMin" ).val();
-    var cenaMax = $( "#cenaMax" ).val();
-    var datum = $("#datum").val();
-    var termin = $("#termin").val();
-     
-    var toSend = JSON.stringify({
-        "title": naziv,
-        "description": opis,
-        "genre": zanr,
-        "averageRatingMin": ocenaMin,
-        "averageRatingMax": ocenaMax,
-        "priceMin": cenaMin,
-        "priceMax": cenaMax,
-        "date": datum,
-        "time": termin
-    });
-    
-    $.ajax({
-        type: "POST",                                              
-        url: "http://localhost:8080/api/movies",                
-        dataType: "json",                                           
-        contentType: "application/json",                           
-        data: toSend,                                     
-        success: function (data) {
-            populateMovies(data);
-        },
-        error: function (data) {
-            alert("Greška!");
-        }
-    });
-});
 
 $(document).on("change", '#sort', function (event) {
 	  var sortUrl = "http://localhost:8080/api/movies/sort?sortBy=" + this.value;

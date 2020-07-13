@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,28 +43,16 @@ public class MovieController {
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<MovieDTO>> getMovies() {
         List<Movie> list = this.service.findAll();
-        List<MovieDTO> DTOs = new ArrayList<>();
+        List<MovieDTO> DTOs = convertMovieListToMovieDTOList(list);
 
-        for (Movie model : list) {
-            MovieDTO DTO = new MovieDTO();
-            DTO.averageRating = model.getAverageRating();
-            DTO.description = model.getDescription();
-            DTO.duration = model.getDuration();
-            DTO.genre = model.getGenre();
-            DTO.id = model.getId();
-            DTO.title = model.getTitle();
-            DTOs.add(DTO);
-        }
-        
         return new ResponseEntity<>(DTOs, HttpStatus.OK);
     }
 	
-	@SuppressWarnings("deprecation")
+	
 	@PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,     // tip podataka koje metoda može da primi
             produces = MediaType.APPLICATION_JSON_VALUE)     // tip odgovora
     public ResponseEntity<List<MovieDTO>> search(@RequestBody SearchMovieProjectionDTO smpDTO) throws Exception {
-
 		List<Movie> all = this.service.findAll();
 		List<Movie> withTitle = new ArrayList<>();
 		List<Movie> withDescription = new ArrayList<>();
@@ -72,7 +61,6 @@ public class MovieController {
 		List<Movie> withAverageRating = new ArrayList<>();
 		List<Movie> withDate = new ArrayList<>();
 		List<Movie> withTime = new ArrayList<>();
-		
 		List<MovieDTO> DTOs = new ArrayList<>();
 		
 		
@@ -146,10 +134,9 @@ public class MovieController {
 			
 			if(!parseError){
 				for (int i = 0; i < withAverageRating.size(); i++) {
-					Long id = withAverageRating.get(i).getId();
-					List<Projection> projections = projectionService.findAll().stream().filter(p -> p.getId() == id).collect(Collectors.toList());
-					for (int k = 0; k < projections.size(); k++) {
-						double price = projections.get(k).getPrice();
+					Set<Projection> projections = withAverageRating.get(i).getProjections();
+					for (Projection projection : projections) {
+						double price = projection.getPrice();
 						if(price >= priceMin && price <= priceMax) {
 							withPrice.add(withAverageRating.get(i));
 							break;
@@ -170,11 +157,10 @@ public class MovieController {
 			int day = Integer.parseInt(parts[2]);
 			
 			for (int i = 0; i < withPrice.size(); i++) {
-				Long id = withPrice.get(i).getId();
-				List<Projection> projections = projectionService.findAll().stream().filter(p -> p.getId() == id).collect(Collectors.toList());
-				for (int k = 0; k < projections.size(); k++) {
+				Set<Projection> projections = withPrice.get(i).getProjections();
+				for (Projection projection : projections) {
 					Calendar projectionDate = new GregorianCalendar();
-					projectionDate.setTime(projections.get(k).getDateAndTime());
+					projectionDate.setTime(projection.getDateAndTime());
 					int projectionYear = projectionDate.get(Calendar.YEAR);
 					int projectionMonth = projectionDate.get(Calendar.MONTH) + 1;
 					int projectionDay = projectionDate.get(Calendar.DAY_OF_MONTH);
@@ -190,8 +176,6 @@ public class MovieController {
 			withDate = withPrice;
 		}
 		
-		
-		
 		//17:00
 		if(!smpDTO.time.equals("")){
 			String[] parts = smpDTO.time.split(":");
@@ -199,10 +183,9 @@ public class MovieController {
 			int minutes = Integer.parseInt(parts[1]);
 			
 			for (int i = 0; i < withDate.size(); i++) {
-				Long id = withDate.get(i).getId();
-				List<Projection> projections = projectionService.findAll().stream().filter(p -> p.getId() == id).collect(Collectors.toList());
-				for (int k = 0; k < projections.size(); k++) {
-					java.util.Date projectionDate = projections.get(k).getDateAndTime();
+				Set<Projection> projections = withPrice.get(i).getProjections();
+				for (Projection projection : projections) {
+					java.util.Date projectionDate = projection.getDateAndTime();
 					if(projectionDate.getHours() == hours && projectionDate.getMinutes() == minutes){
 						withTime.add(withDate.get(i));
 						break;

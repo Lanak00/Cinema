@@ -429,7 +429,7 @@ $(document).on('click', '#mov', function () {
 });
 
 $(document).on('click', '#cin', function () {
-	location.href = '/AdministratorPages/Manager.html';
+	location.href = '/ManagerPages/Manager.html';
 });
 
 $(document).on('click', '#logout', function () {
