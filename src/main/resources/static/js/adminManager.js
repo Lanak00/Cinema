@@ -90,8 +90,6 @@ $(document).on('click', '#registerForm button', function () {
 			});
     
     		showOtherAndCloseForm();
-    		
-        	
 	    },
         error: function (data) {
             alert("Greška!");

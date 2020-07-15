@@ -286,6 +286,8 @@ $(document).on('click', '#modifyProjectionForm button', function () {
 $(document).on('click', '#addProjectionForm #addMovie', function (event) {
 	$('#addProjectionForm').hide();
 	$('#addMovieForm').show();
+	
+	event.stopPropagation();
 });
 
 $(document).on('click', '#addMovieForm #addMovie', function (event) {

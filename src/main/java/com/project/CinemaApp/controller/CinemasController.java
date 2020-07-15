@@ -76,8 +76,7 @@ public class CinemasController {
 	
 	@PostMapping(path = "/modify" , consumes = MediaType.APPLICATION_JSON_VALUE) 
     public void modifyCinema(@RequestBody CinemaDTO cinemaDTO) throws Exception {
-        Cinema cinema = new Cinema();
-        cinema.setId(cinemaDTO.id);
+        Cinema cinema = this.service.findOne(cinemaDTO.id);
         cinema.setAdress(cinemaDTO.adress);
         cinema.seteMail(cinemaDTO.eMail);
         cinema.setName(cinemaDTO.name);

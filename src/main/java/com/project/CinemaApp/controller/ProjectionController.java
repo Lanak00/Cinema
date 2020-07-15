@@ -49,7 +49,6 @@ public class ProjectionController {
 		this.movieService = movieService;
     }
     
-    //PROMENI DA PREUZIMA IZ TABELE PROJEKCIJA NA OSNOVU ID BIOSKOPA
 	@GetMapping(
             value = "/getAllProjectionsOfCinema/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -67,8 +66,8 @@ public class ProjectionController {
         		}
         	}
         }
-         
-	
+        
+        
         return new ResponseEntity<>(DTOs, HttpStatus.OK);
     }
 	

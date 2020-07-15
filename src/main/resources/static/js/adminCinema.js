@@ -148,14 +148,13 @@ $(document).on('click', '#cinemaFormModify button', function () {
         contentType: "application/json",                          
         data: toSend,                              
         success: function () {
-        	alert("Bioskop " + toSend.name + " je uspesno izmenjen.");
-        	
         	$.ajax({
                 type: "GET",                                                
                 url: "http://localhost:8080/api/cinemas",                 
                 dataType: "json",                                           
                 success: function (data) {
                 	populateTable(data);
+                	alert("Bioskop " + toSend.name + " je uspesno izmenjen.");
                 },
                 error: function (data) {
                     console.log("ERROR : ", data);
@@ -196,26 +195,25 @@ $(document).on('click', '#cinemaFormAdd button', function () {
         contentType: "application/json",                          
         data: toSend,                              
         success: function () {
-        	alert("Bioskop je uspesno dodat!");
+        	 $.ajax({
+		        type: "GET",                                                
+		        url: "http://localhost:8080/api/cinemas",                 
+		        dataType: "json",                                           
+		        success: function (data) {
+		        	populateTable(data);
+		        	showOtherAndCloseForms();
+		        	alert("Bioskop je uspesno dodat!");
+		        },
+		        error: function (data) {
+		            console.log("ERROR : ", data);
+		        }
+		    });
+        	
 	    },
         error: function (data) {
             alert("Greška!");
         }
-    });
-    
-    $.ajax({
-        type: "GET",                                                
-        url: "http://localhost:8080/api/cinemas",                 
-        dataType: "json",                                           
-        success: function (data) {
-        	populateTable(data);
-        },
-        error: function (data) {
-            console.log("ERROR : ", data);
-        }
-    });
-    
-    showOtherAndCloseForms();
+    }); 
 });
 
 function populateTable(data) {

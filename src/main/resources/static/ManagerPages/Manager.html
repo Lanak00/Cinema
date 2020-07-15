@@ -99,7 +99,35 @@
 		        </div>
 	        </div>
 	        
-	        <div class="row" id="addProjectionForm" hidden>
+	        <div id="modifyProjectionForm" class="row" hidden>
+	        	<div class="col s4">
+	        		<button id="btnBackModifyProjectionForm" class="btn waves-effect waves-light">Nazad</button>
+	        	</div>
+		        <div class="col s4">
+					<form>
+						<input type="text" id="id" hidden />
+						<div class="row">
+							<label for="datee">Datum:</label>
+				 			<input type="date" id="datee" min="2020-29-06" max="2020-12-08" />
+						</div>
+						<div class="row">
+							<label for="timee">Termin</label>
+				 			<input type="time" id="timee" min="11:00" max="22:00" />
+						</div>
+						<div class="row">
+							<label for="pricee">Cena</label>
+				 			<input type="number" id="pricee" />
+						</div>
+						<div class="row">
+							<button type="button" class="btn waves-effect waves-light">Izmeni</button>
+						</div>
+					</form>	
+		        </div>
+		        <div class="col s4"></div>
+	        </div>
+	        
+	        
+	        <div id="addProjectionForm" class="row" hidden>
 	        	<div class="col s3">
 	        		<button id="btnBackAddProjectionForm" class="btn waves-effect waves-light">Nazad</button>
 	        	</div>
@@ -110,9 +138,9 @@
 								<select class="browser-default" id="movieSelect">
 									
 				  	    		</select>
-			  	    		<div>
+			  	    		</div>
 			  	    		<div class="input-field col">
-			  	    			<button type="submit" class="btn waves-effect waves-light" id="addMovie">Dodaj film</button>
+			  	    			<button type="button" class="btn waves-effect waves-light" id="addMovie">Dodaj film</button>
 			  	    		</div>
 		  	    		</div>
 		  	    		<div class="row">
@@ -133,7 +161,7 @@
 				 			<input type="number" id="price">
 						</div>
 						<div class="row">
-							<button type="submit" class="btn waves-effect waves-light" id="addProjection">Dodaj</button>
+							<button type="button" class="btn waves-effect waves-light" id="addProjection">Dodaj</button>
 						</div>
 					</form>	
 		        </div>
@@ -142,46 +170,20 @@
 	        </div>
 	        
 	        
-	        <div id="modifyProjectionForm" hidden>
-	        	<div class="col s4">
-	        		<button id="btnBackModifyProjectionForm" class="btn waves-effect waves-light">Nazad</button>
-	        	</div>
-		        <div class="col s4">
-					<form>
-						<input type="text" id="id" hidden>
-						<div class="row">
-							<label for="datee">Datum:</label>
-				 			<input type="date" id="datee" min="2020-29-06" max="2020-12-08">
-						</div>
-						<div class="row">
-							<label for="timee">Termin</label>
-				 			<input type="time" id="timee" min="11:00" max="22:00">
-						</div>
-						<div class="row">
-							<label for="pricee">Cena</label>
-				 			<input type="number" id="pricee">
-						</div>
-						<div class="row">
-							<button type="submit" class="btn waves-effect waves-light">Izmeni</button>
-						</div>
-					</form>	
-		        </div>
-		        <div class="col s4"></div>
-	        </div>
 	        
-	        <div class="row" id="addMovieForm" hidden>
+	        <div id="addMovieForm" class="row" hidden>
 		        <div class="col s4">
 		        	<button id="btnBackAddMovieForm" class="btn waves-effect waves-light">Nazad</button>
 		        </div>
 		        <div class="col s4">
 					<form method="POST" enctype="multipart/form-data">
 						<div class="row">
-							<label for="title">Naslov:</label>
-				 			<input type="text" id="title" name="title">
+							<label for="title">Naslov</label>
+				 			<input type="text" id="title" name="title"/>
 		  	    		</div>
 		  	    		<div class="row">
-							<label for="description">Opis:</label>
-				 			<input type="text" id="description" name="description">
+							<label for="description">Opis</label>
+				 			<input type="text" id="description" name="description"/>
 		  	    		</div>
 						<div class="row">
 							 <label for="genre" class="black-text text-darken-2">Zanr</label>
@@ -196,14 +198,14 @@
 						</div>
 						<div class="row">
 							<label for="duration">Trajanje</label>
-				 			<input type="number" id="duration" name="duration">
+				 			<input type="number" id="duration" name="duration"/>
 						</div>
 						<div class="row">
 							<label for="image">Slika</label>
-				 			<input type="file" id="image" name="image">
+				 			<input type="file" id="image" name="image"/>
 						</div>
 						<div class="row">
-							<button type="submit" class="btn waves-effect waves-light" id="addMovie">Dodaj film</button>
+							<button type="button" class="btn waves-effect waves-light" id="addMovie">Dodaj film</button>
 						</div>
 					</form>	
 		        </div>

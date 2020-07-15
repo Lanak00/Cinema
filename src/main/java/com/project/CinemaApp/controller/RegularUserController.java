@@ -67,14 +67,34 @@ public class RegularUserController {
     }
 	
 	@PostMapping(path = "/makeReservation" , consumes = MediaType.APPLICATION_JSON_VALUE) 
-    public void makeReservation(@RequestBody UserProjectionDTO userProjectionDTO) throws Exception {
+    public ResponseEntity<String> makeReservation(@RequestBody UserProjectionDTO userProjectionDTO) throws Exception {
 		User user = this.service.findOne(userProjectionDTO.userId);
 		Projection projection = this.projectionService.findOne(userProjectionDTO.projectionId);
 		
+		Set<Projection> userProjections = user.getProjectionsReserved();
+		for(Projection p : userProjections) {
+			if(p.getId() == projection.getId())
+				return new ResponseEntity<>("Projection is already reserved.", HttpStatus.BAD_REQUEST);
+		}
+		
+		Set<CinemaHall> cinemaHallsOfProjection = projection.getHalls();
+		int fullCapacity = 0;
+		for(CinemaHall ch : cinemaHallsOfProjection) {
+			fullCapacity += ch.getCapacity();
+		}
+		int numberOfReservedTickets = projection.getTicketsReserved();
+		
+		if(numberOfReservedTickets >= fullCapacity)
+			return new ResponseEntity<>("All possible tickets are reserved.", HttpStatus.BAD_REQUEST);
+		
+		projection.setTicketsReserved(++numberOfReservedTickets);
 		user.getProjectionsReserved().add(projection);
 		projection.getUsersReserved().add(user);
 		
+		this.projectionService.save(projection);
         this.service.save(user);
+        
+        return new ResponseEntity<>("Succesfully reserved ticket.", HttpStatus.OK);
     }
 	
 	@GetMapping(
@@ -108,7 +128,7 @@ public class RegularUserController {
         User user = this.service.findOne(id);
         Set<WatchedMovies> wachedMovies = user.getWatchedMovies();
         List<MovieWithPersonalRatingDTO> DTOs = new ArrayList<>();
-		
+        
 		for(WatchedMovies wm : wachedMovies) {
 			Movie movie = this.movieService.findOne(wm.getId().getMovieId());
 
@@ -139,9 +159,20 @@ public class RegularUserController {
 		watchedMovie.setUser(user);
 		watchedMovie.setRating(-1);
 		
-        this.watchedMoviesService.save(watchedMovie);
-        user.getProjectionsReserved().remove(projection);
-        this.service.save(user);
+		List<WatchedMovies> watchedMovies = this.watchedMoviesService.findAll();
+		boolean alreadyWatchedMovie = false;
+		for(WatchedMovies wm : watchedMovies) {
+			if(wm.getId().getUserId() == watchedMovie.getId().getUserId() && wm.getId().getMovieId() == watchedMovie.getId().getMovieId()) {
+				alreadyWatchedMovie = true;
+				break;
+			}
+		}
+		
+		if(!alreadyWatchedMovie) {
+			this.watchedMoviesService.save(watchedMovie);
+	        user.getProjectionsReserved().remove(projection);
+	        this.service.save(user);
+		}
     }
 	
 	@PostMapping(path = "/uncheckReservation" , consumes = MediaType.APPLICATION_JSON_VALUE) 
@@ -150,8 +181,12 @@ public class RegularUserController {
 		Projection projection = this.projectionService.findOne(userProjectionDTO.projectionId);
 		
         user.getProjectionsReserved().remove(projection);
-        //projection.getUsersReserved().remove(user);
+        
+        int numberOfReservedTickets = projection.getTicketsReserved();
+        projection.setTicketsReserved(--numberOfReservedTickets);
+        
         this.service.save(user);
+        this.projectionService.save(projection);
     }
 	
 	
