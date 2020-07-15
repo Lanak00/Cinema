@@ -293,8 +293,8 @@ function populateManagersTables() {
 			    "<th>Ime</th>" +
 			    "<th>Prezime</th>" + 
 			    "<th>Email</th>" + 
-			    "<th>Phone</th>" + 
-			    "<th>Birth date</th>" +
+			    "<th>Telefon</th>" + 
+			    "<th>Datum rodjenja</th>" +
 			    "</tr>";
 			    
 			    cinemaManagers.append(header);
@@ -341,6 +341,15 @@ function populateManagersTables() {
 	        }
 	    }); 
 }
+
+
+$(document).on('click', '#btnBackFormModify', function () {
+	showOtherAndCloseForms();
+});
+
+$(document).on('click', '#btnBackFormAdd', function () {
+	showOtherAndCloseForms();
+});
 
 $(document).on('click', '#mov', function () {
 	location.href = '/AdministratorPages/AdministratorMovies.html';

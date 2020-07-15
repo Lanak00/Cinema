@@ -200,7 +200,7 @@ function populateProjections(data) {
     $('#movieProjections').append(header);
     
     for (i = 0; i < data.length; i++) {                     
-        var row = "<tr>";                                   
+        var row = "<tr>";                             
         row += "<td>" + data[i]['movie']['title'] + "</td>";     
         row += "<td>" + data[i]['movie']['duration'] + "</td>";
        	row += "<td>" + data[i]['movie']['genre'] + "</td>";
@@ -219,7 +219,8 @@ function populateProjections(data) {
 
 function populateMovies(data) {
 	$( "#movies" ).empty();
-    var header = "<tr>" + 
+    var header = "<tr>" +
+    "<th></th>" +  
     "<th>Naslov</th>" + 
     "<th>Opis</th>" +
     "<th>Zanr</th>" + 
@@ -229,7 +230,9 @@ function populateMovies(data) {
     $('#movies').append(header);
     
     for (i = 0; i < data.length; i++) {                     
-        var row = "<tr>";                                  
+        var row = "<tr>";
+        var image = "<img alt='Image' height='100' width='100' src='/images/" + data[i]['imageName'] + "' >";
+        row += "<td>" + image + "</td>";                                   
         row += "<td>" + data[i]['title'] + "</td>";     
         row += "<td>" + data[i]['description'] + "</td>";
         row += "<td>" + data[i]['genre'] + "</td>";

@@ -26,32 +26,32 @@ VALUES ('20.01.1986.', 'adresa@gmail.com', 'Imenko', 'Prezimenic', 'loz123', '06
 INSERT INTO USER (BIRTH_DATE, EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, PHONE, ROLE, USERNAME) 
 VALUES ('13.02.1995.', 'mejl@gmail.com', 'Ivan', 'Ivanovic', 'vece', '0604706707', 'KORISNIK', 'IvanOvic');
 
-INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE) 
-VALUES (8.8, 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.', '2.03', 'Sci-Fi', 'Inception');
+INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE, IMAGE_FILE_NAME) 
+VALUES (8.8, 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.', '2.03', 'Sci-Fi', 'Inception', '1.jpg');
 
-INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE) 
-VALUES (6.6, 'Nicky Spurgeon is an extremely accomplished con man who takes an amateur con artist, Jess, under his wing','2.02', 'Drama', 'Focus');
+INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE, IMAGE_FILE_NAME) 
+VALUES (6.6, 'Nicky Spurgeon is an extremely accomplished con man who takes an amateur con artist, Jess, under his wing','2.02', 'Drama', 'Focus', '2.jpg');
 
-INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE) 
-VALUES (4.3, 'Opis filma','1.54', 'Comedy', '21 Jump Street');
+INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE, IMAGE_FILE_NAME) 
+VALUES (4.3, 'Opis filma','1.54', 'Comedy', '21 Jump Street', '3.jpg');
 
-INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE) 
-VALUES (7.2, 'Movie description', '1.53', 'Romance', 'Romance Movie');
+INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE, IMAGE_FILE_NAME) 
+VALUES (7.2, 'Movie description', '1.53', 'Romance', 'Romance Movie', '4.jpg');
 
-INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE) 
-VALUES (9.3, 'Description of a movie','2.20', 'Drama', 'Drama movie');
+INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE, IMAGE_FILE_NAME) 
+VALUES (9.3, 'Description of a movie','2.20', 'Drama', 'Drama movie', '5.jpg');
 
-INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE) 
-VALUES (5.0, 'Opis jos jednog filma','2.07', 'Comedy', 'Comedy Movie');
+INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE, IMAGE_FILE_NAME) 
+VALUES (5.0, 'Opis jos jednog filma','2.07', 'Comedy', 'Comedy Movie', '6.jpg');
 
-INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE) 
-VALUES (9.7, 'Jako dobar film','2.00', 'Sci-Fi', 'Best Movie Ever');
+INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE, IMAGE_FILE_NAME) 
+VALUES (9.7, 'Jako dobar film','2.00', 'Sci-Fi', 'Best Movie Ever', '7.jpg');
 
-INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE) 
-VALUES (2.1, 'Jako los film', '1.52', 'Comedy', 'Worst Movie Ever');
+INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE, IMAGE_FILE_NAME) 
+VALUES (2.1, 'Jako los film', '1.52', 'Comedy', 'Worst Movie Ever', '8.jpg');
 
-INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE) 
-VALUES (7.7, 'Najgledaniji film', '1.50', 'Action', 'Most Popular Movie Ever');
+INSERT INTO MOVIE (AVERAGE_RATING, DESCRIPTION, DURATION, GENRE, TITLE, IMAGE_FILE_NAME) 
+VALUES (7.7, 'Najgledaniji film', '1.50', 'Action', 'Most Popular Movie Ever', '9.jpg');
 
 INSERT INTO CINEMA (ADRESS, E_MAIL, MANAGER, NAME, PHONE_NUMBER) 
 VALUES ('Jugoslovenske Armije 6', 'bioskop@gmail.com', 'Olja', 'Bioskop', '0604706707');

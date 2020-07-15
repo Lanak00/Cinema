@@ -29,6 +29,18 @@ public class Movie implements Serializable {
 	@Column 
 	private String averageRating;
 	
+	@Column 
+	private String imageFileName;
+	
+	
+	public String getImageFileName() {
+		return imageFileName;
+	}
+
+	public void setImageFileName(String imageFileName) {
+		this.imageFileName = imageFileName;
+	}
+
 	@OneToMany (mappedBy = "movie", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<WatchedMovies> usersWatched = new HashSet<WatchedMovies>() ;
 	

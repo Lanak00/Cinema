@@ -1,4 +1,8 @@
 package com.project.CinemaApp.controller;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -13,12 +17,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.CinemaApp.entity.Movie;
 import com.project.CinemaApp.entity.Projection;
@@ -247,6 +253,34 @@ public class MovieController {
 	    return new ResponseEntity<>(DTOs, HttpStatus.OK);
 	}
 	
+	@PostMapping("/addMovie")     
+    public void multiUploadFileModel(@RequestParam("title") String title, 
+    								 @RequestParam("description") String description,
+    								 @RequestParam("genre") String genre,
+    								 @RequestParam("duration") String duration,
+    								 @RequestParam("image") MultipartFile image) {
+		String fileName;
+        try {
+        	byte[] bytes = image.getBytes();
+        	fileName = image.getOriginalFilename();
+        	Path path = Paths.get("src/main/resources/static/images/" + fileName);
+        	Files.write(path, bytes);
+        } catch (IOException e) {
+            return;
+        }
+
+        Movie movie = new Movie();
+        movie.setAverageRating("0");
+        movie.setDescription(description);
+        movie.setDuration(duration);
+        movie.setGenre(genre);
+        movie.setImageFileName(fileName);
+        movie.setTitle(title);
+        
+        this.service.save(movie);
+    }
+
+	
 	private List<MovieDTO> convertMovieListToMovieDTOList(List<Movie> inputList){
 		List<MovieDTO> DTOs = new ArrayList<>();
 		
@@ -258,6 +292,7 @@ public class MovieController {
             DTO.genre = model.getGenre();
             DTO.id = model.getId();
             DTO.title = model.getTitle();
+            DTO.imageName = model.getImageFileName();
             DTOs.add(DTO);
         }
 		

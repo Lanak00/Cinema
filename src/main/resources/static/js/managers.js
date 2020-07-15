@@ -88,7 +88,7 @@ $(document).on('click', '#addHallButton', function () {
 	$('#addHallForm').show();
 });
 
-$(document).on('click', '#addHallForm button', function () {
+$(document).on('click', '#addHallForm #addHall', function () {
 	event.preventDefault();
     
 	var hallMark = $("#addHallForm #hallMark").val();
@@ -117,7 +117,7 @@ $(document).on('click', '#addHallForm button', function () {
     });
 });
 
-$(document).on('click', '#modifyHallForm button', function () {
+$(document).on('click', '#modifyHallForm #modifyHall', function () {
 	event.preventDefault();
     
     var id = $("#modifyHallForm #id").val();
@@ -196,7 +196,7 @@ $(document).on('click', '#addProjectionButton', function () {
 	    });
 });
 
-$(document).on('click', '#addProjectionForm button', function () {
+$(document).on('click', '#addProjectionForm #addProjection', function () {
 	var selectedMovie = $("#movieSelect option:selected").val();
 	var selectedHalls = $("#hallSelect").val();
 	var date = $("#date").val();
@@ -282,6 +282,43 @@ $(document).on('click', '#modifyProjectionForm button', function () {
         }
     });
 });
+
+$(document).on('click', '#addProjectionForm #addMovie', function (event) {
+	$('#addProjectionForm').hide();
+	$('#addMovieForm').show();
+});
+
+$(document).on('click', '#addMovieForm #addMovie', function (event) {
+	event.preventDefault();
+
+	var title = $('#title').val();
+	var description = $('#description').val();
+	var genre  = $('#genre').val();
+	var duration = $('#duration').val();
+	var image = $('#image').val();
+	
+	form = $('#addMovieForm form')[0];
+	var data = new FormData(form);
+	
+	$.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "/api/movies/addMovie",
+        data: data,
+        processData: false, 
+        contentType: false,
+        cache: false,
+        timeout: 600000,
+        success: function (data) {
+            alert("SUCCESS");
+        },
+        error: function (e) {
+            console.log("ERROR : ", e);        
+        }
+    });
+});
+
+
 function formatDate(date) {
     var parts = date.split("-");
     var year = parts[0];
@@ -423,6 +460,44 @@ function getProjections() {
         }
     });
 }
+
+$(document).on('click', '#btnBackHallStuff', function (event) {
+	$('#cinemaStuff').show();
+	$('#hallStuff').hide();
+});
+
+$(document).on('click', '#btnBackAddHallForm', function (event) {
+	$('#addHallForm').hide();
+	$('#hallsView').show();
+});
+
+
+$(document).on('click', '#btnBackModifyHallForm', function (event) {
+	$('#modifyHallForm').hide();
+	$('#hallsView').show();
+});
+
+$(document).on('click', '#btnBackProjectionView', function (event) {
+	$('#cinemaStuff').show();
+	$('#projectionStuff').hide();
+});
+
+$(document).on('click', '#btnBackAddProjectionForm', function (event) {
+	$('#addProjectionForm').hide();
+	$('#projectionView').show();
+});
+
+$(document).on('click', '#btnBackModifyProjectionForm', function (event) {
+	$('#modifyProjectionForm').hide();
+	$('#projectionView').show();
+});
+
+$(document).on('click', '#btnBackAddMovieForm', function (event) {
+	$('#addMovieForm').hide();
+	$('#addProjectionForm').show();
+});
+
+
 
 $(document).on('click', '#mov', function () {
 	location.href = '/ManagerPages/ManagerMovies.html';

@@ -33,57 +33,75 @@
 	        </div>
     	</div>
     	
-    	<div class="formModify" hidden>
-			<h1>Dodaj bioskop<h1>
-			<form id="cinemaFormModify">
-				<input type="text" id="id" hidden/>
-				<label for="name">Naziv</label> 
-				<input type="text" id="name"/>
-				<label for="address">Adresa<label>
-				<input type="text" id="address"/> 
-				<label for="mobilePhone">Telefon<label>
-				<input type="text" id="mobilePhone"/>
-				<label for="email">Email<label>
-				<input type="text" id="email"/> 
-				<button type="submit" class="btn waves-effect waves-light">Izmeni bioskop</button>
-			</form>
+    	<div class="formModify row" hidden>
+    		<div class="col s4">
+    			<button id="btnBackFormModify" type="submit" class="btn waves-effect waves-light" >Nazad</button>
+    		</div>
+    		<div class="col s4">
+				<h2>Izmeni bioskop</h2>
+				<form id="cinemaFormModify">
+					<input type="text" id="id" hidden/>
+					<label for="name">Naziv</label> 
+					<input type="text" id="name"/>
+					<label for="address">Adresa<label>
+					<input type="text" id="address"/> 
+					<label for="mobilePhone">Telefon<label>
+					<input type="text" id="mobilePhone"/>
+					<label for="email">Email<label>
+					<input type="text" id="email"/> 
+					<button type="submit" class="btn waves-effect waves-light">Izmeni bioskop</button>
+				</form>
+			</div>
+			<div class="col s4"></div>
   	    </div>
   	    
-  	    <div class="formAdd" hidden>
-			<h1>Dodaj bioskop<h1>
-			<form id="cinemaFormAdd">
-				<label for="name">Naziv</label> 
-				<input type="text" id="name"/>
-				<label for="address">Adresa<label>
-				<input type="text" id="address"/> 
-				<label for="mobilePhone">Telefon<label>
-				<input type="text" id="mobilePhone" />
-				<label for="email">Email<label>
-				<input type="text" id="email"/>
-				<button type="submit" class="btn waves-effect waves-light">Dodaj bioskop</button>
-			</form>
+  	    <div class="formAdd row" hidden>
+  	    	<div class="col s4">
+  	    		<button id="btnBackFormAdd" type="submit" class="btn waves-effect waves-light" >Nazad</button>
+  	    	</div>
+    		<div class="col s4">
+				<h2>Dodaj bioskop</h2>
+				<form id="cinemaFormAdd">
+					<label for="name">Naziv</label> 
+					<input type="text" id="name"/>
+					<label for="address">Adresa<label>
+					<input type="text" id="address"/> 
+					<label for="mobilePhone">Telefon<label>
+					<input type="text" id="mobilePhone" />
+					<label for="email">Email<label>
+					<input type="text" id="email"/>
+					<button type="submit" class="btn waves-effect waves-light">Dodaj bioskop</button>
+				</form>
+			</div>
+			<div class="col s4"></div>
   	    </div>
   	    
-  	    <div id="cinemaManagersStuff" hidden>
-  	    	<div class="container">
-	  	    	<table id="cinemaManagers">
-	  	    	
-	  	    	</table>
+  	    <div id="cinemaManagersStuff" class="row" hidden>
+  	    	<div class="col s3">
+  	    		<div class="row">
+  	    			<button id="goToCinemas" class="btn waves-effect waves-light">Nazad</button>
+  	    		</div>
+  	    		<div class="row">
+		  	    	<form>
+		  	    		<div class="row">
+		  	    			<label for="otherManagers">Menadzeri</label>
+			  	    		<select class="browser-default" id="otherManagers">
+			  	    		
+			  	    		</select>
+			  	    	</div>
+			  	    	
+			  	    	<button class="btn waves-effect waves-light">Dodaj menadzera</button>
+		  	    	</form>
+  				</div>
   	    	</div>
   	    	
-  	    	<div>
-	  	    	<form>
-	  	    		<label for="otherManagers">Menadzeri</label>
-	  	    		<div>
-		  	    		<select class="browser-default" id="otherManagers">
-		  	    		</select>
-		  	    	</div>
-		  	    	
-		  	    	<button class="btn waves-effect waves-light">Add manager</button>
-	  	    	</form>
-  	    	</div>
-  	    	<div>
-  	    		<button id="goToCinemas" class="btn waves-effect waves-light">Bioskopi</button>
+  	    	<div class="col s9">
+  	    		<div class="container">
+  	    			<h2>Menadzeri bioskopa</h2>
+	  	    		<table id="cinemaManagers">
+	  	    	
+	  	    		</table>
+	  	    	</div>
   	    	</div>
   	    </div>
 	</body>

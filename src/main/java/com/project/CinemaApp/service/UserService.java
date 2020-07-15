@@ -1,10 +1,12 @@
 package com.project.CinemaApp.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.CinemaApp.entity.Cinema;
 import com.project.CinemaApp.entity.User;
 import com.project.CinemaApp.repository.UserRepository;
 
@@ -13,7 +15,7 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-	
+    
     public User findOne(Long id) {
     	User user = this.userRepository.getOne(id);
         return user;
@@ -35,8 +37,9 @@ public class UserService {
 
     public void delete(Long id){
 		User obj = this.userRepository.getOne(id);
-		if(obj != null)
+		if(obj != null) {
 			this.userRepository.delete(obj);
+		}
 	}
     
     public List<User> findByUsername(String username){

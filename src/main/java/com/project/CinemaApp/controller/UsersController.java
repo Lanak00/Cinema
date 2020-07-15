@@ -20,6 +20,7 @@ import com.project.CinemaApp.entity.Cinema;
 import com.project.CinemaApp.entity.User;
 import com.project.CinemaApp.entity.dto.CinemaDTO;
 import com.project.CinemaApp.entity.dto.UserDTO;
+import com.project.CinemaApp.service.CinemaService;
 import com.project.CinemaApp.service.UserService;
 
 @RestController
@@ -27,10 +28,12 @@ import com.project.CinemaApp.service.UserService;
 public class UsersController {
 
 	private final UserService service;
+	private final CinemaService cinemaService;
 	
     @Autowired
-    public UsersController(UserService service) {
+    public UsersController(UserService service, CinemaService cinemaService) {
         this.service = service;
+        this.cinemaService = cinemaService;
     }
     
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -76,6 +79,17 @@ public class UsersController {
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	public void deleteUser(@PathVariable("id") Long id) throws Exception {
 		try {
+			User user = this.service.findOne(id);
+			Set<Cinema> cinemas = user.getManagedCinemas();
+			
+			List<Cinema> cinemasCopy = new ArrayList<Cinema>();
+			cinemasCopy.addAll(cinemas);
+			
+			for(Cinema c : cinemasCopy) {
+				c.removeManager(user);
+				this.cinemaService.save(c);
+			}
+			
 			this.service.delete(id);
 		} catch (Exception e) {
 			// TODO: handle exception

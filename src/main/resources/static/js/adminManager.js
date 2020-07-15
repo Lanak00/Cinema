@@ -23,19 +23,20 @@ $(document).on('click', '.btnDelete', function () {
         type: "DELETE",
         url: "http://localhost:8080/api/managers/delete/" + this.id,  
         success: function () {
-            alert("Bioskop je uspesno obrisan!"); 
-            
             $.ajax({
                 type: "GET",                                                
                 url: "http://localhost:8080/api/managers",                 
                 dataType: "json",                                           
                 success: function (data) {
                 	populateTable(data);
+                	alert("Menadzer je uspesno obrisan!"); 
                 },
                 error: function (data) {
                     console.log("ERROR : ", data);
                 }
             });
+            
+            
         },
         error: function (data) {
             console.log("ERROR : ", data);
@@ -81,6 +82,7 @@ $(document).on('click', '#registerForm button', function () {
 			    dataType: "json",                                           
 			    success: function (data) {
 			    	populateTable(data);
+			    	alert("Menager" + username + "je uspesno registrovan!");
 			    },
 			    error: function (data) {
 			        console.log("ERROR : ", data);
@@ -89,7 +91,7 @@ $(document).on('click', '#registerForm button', function () {
     
     		showOtherAndCloseForm();
     		
-        	alert("Menager" + username + "je uspesno dodat!");
+        	
 	    },
         error: function (data) {
             alert("Greška!");
@@ -146,6 +148,10 @@ function showOtherAndCloseForm() {
 	otherStuff.show();
     form.hide();
 }
+
+$(document).on('click', '#btnBackFormAdd', function () {
+	showOtherAndCloseForm();
+});
 
 $(document).on('click', '#mov', function () {
 	location.href = '/AdministratorPages/AdministratorMovies.html';

@@ -52,7 +52,7 @@ public class User implements Serializable{
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<WatchedMovies> watchedMovies = new HashSet<WatchedMovies>();
 	
-	@ManyToMany (mappedBy = "managers")
+	@ManyToMany (mappedBy = "managers", fetch = FetchType.LAZY)
 	private Set<Cinema> managedCinemas = new HashSet<>();
 	
 	
