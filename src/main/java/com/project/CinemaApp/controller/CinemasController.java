@@ -18,10 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.CinemaApp.entity.Cinema;
-import com.project.CinemaApp.entity.CinemaHall;
 import com.project.CinemaApp.entity.User;
 import com.project.CinemaApp.entity.dto.CinemaDTO;
-import com.project.CinemaApp.entity.dto.CinemaHallDTO;
 import com.project.CinemaApp.entity.dto.CinemaManagerDTO;
 import com.project.CinemaApp.entity.dto.UserDTO;
 import com.project.CinemaApp.service.CinemaService;

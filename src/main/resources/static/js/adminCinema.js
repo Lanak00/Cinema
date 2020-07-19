@@ -99,7 +99,8 @@ $(document).on('click', '#goToCinemas', function () {
 
 $(document).on('click', '#cinemaManagersStuff form button', function (event) {
 	event.preventDefault();
-	var selected = $("#otherManagers option:selected").val()
+	var selected = $("#otherManagers option:selected").val();
+	
 	if (isNaN(selected)) {
 		return;
 	}
@@ -331,8 +332,6 @@ function populateManagersTables() {
 	            	var option = "<option value=" + data[i]['id'] + ">" + display + "</option>"
 	            	select.append(option);
 	            }
-	            
-	            
 	        },
 	        error: function (data) {
 	            console.log("ERROR : ", data);

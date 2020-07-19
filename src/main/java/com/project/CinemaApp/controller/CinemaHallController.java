@@ -30,13 +30,11 @@ import com.project.CinemaApp.service.UserService;
 public class CinemaHallController {
 
 	private final CinemaService cinemaService;
-	private final UserService userService;
 	private final CinemaHallService service;
 	
     @Autowired
-    public CinemaHallController(CinemaHallService service, CinemaService cinemaService, UserService userService) {
+    public CinemaHallController(CinemaHallService service, CinemaService cinemaService) {
 		this.cinemaService = cinemaService;
-		this.userService = userService;
 		this.service = service;
     }
     

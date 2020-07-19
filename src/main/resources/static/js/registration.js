@@ -1,5 +1,5 @@
 $(document).on('click', '#registerForm button', function () {
-	event.preventDefault();
+	event.preventDefault(); 
 	
     var firstName = $("#registerForm #firstName").val();
     var lastName = $("#registerForm #lastName").val();
@@ -22,7 +22,7 @@ $(document).on('click', '#registerForm button', function () {
     	return;
     }
     
-    if(!( /^[a-zA-Z]+$/.test(firstName) )){
+    if(!( /^[a-zA-Z]+$/.test(lastName) )){
     	alert("Prezime mora sadrzati iskljucivo slova.");
     	return;
     }
